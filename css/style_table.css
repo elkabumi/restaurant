@@ -1,0 +1,26 @@
+/* CSS Document */
+
+.building_fixed{
+	width:200px;
+	bottom:10px;
+	left:10px;
+	margin-left:10px;
+	padding-top:650px;
+	font-size:30px;
+	color:#333;
+	position:relative;
+}
+
+.button_building{
+	background: none repeat scroll 0 0 #e75854;
+    border: medium none;
+    color: #f9f6e5;
+    display: block;
+    font-size: 1.25em;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-top: 2.5em;
+    padding: 1.5em;
+    text-transform: uppercase;
+    width: 100%;
+}
