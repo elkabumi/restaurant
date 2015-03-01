@@ -45,7 +45,7 @@
                                       
                                         <div class="form-group">
                                           <label>Type</label>
-                                           <select name="i_menu_type_id" size="1" class="form-control"/>
+                                           <select id="basic" name="i_menu_type_id" size="1" class="selectpicker show-tick form-control" data-live-search="true" />
                                            <?php
                                            while($r_type = mysql_fetch_array($query_menu_type)){
 										   ?>

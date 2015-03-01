@@ -25,28 +25,31 @@
                             <a style="color:#a0acbf;  "><?= $user_data[1]?></a>
                         </div>
                     </div>
-                   
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                   <?php //if(isset($_SESSION['menu_active'])) { echo $_SESSION['menu_active']; }?>
-                    <ul class="sidebar-menu">
-                     
-                      <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 1){ echo "class='active'"; } ?>>
+                   
+                 <ul class="sidebar-menu">  
+                  <li class="treeview <?php //if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 6){ echo "active"; }?>">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Master</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                
+                                <li><a href="master_table.php?page=list"><i class="fa fa-cutlery"></i>Table</a></li>
+                                <li><a href="menu.php?page=list"><i class="fa fa-glass"></i>Menu</a></li>
+                               
+                             
+                            </ul>
+                  </li>
+                  
+                  <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 2){ echo "class='active'"; } ?>>
                             <a href="table.php">
-                                 <i class="fa  fa-cutlery"></i>
-                                <span>Table</span>
+                                 <i class="fa fa-cutlery"></i>
+                                <span>Order</span>
                             </a>
                             
                   </li>
-                      
-                  
-                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 1){ echo "class='active'"; } ?>>
-                            <a href="menu.php">
-                                 <i class="fa fa-glass"></i>
-                                <span>Menu</span>
-                            </a>
-                            
-                  </li>
-                  
                   
                    <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 2){ echo "class='active'"; } ?>>
                             <a href="transaction.php">
