@@ -12,7 +12,7 @@
 }
 
 .button_building{
-	background: none repeat scroll 0 0 #e75854;
+	background: none repeat scroll 0 0 #2ECC71;
     border: medium none;
     color: #f9f6e5;
     display: block;
@@ -23,4 +23,13 @@
     padding: 1.5em;
     text-transform: uppercase;
     width: 100%;
+}
+
+.border_meja{
+	width:1110px;
+	height:500px;
+	position:absolute;
+	margin-left:130px;
+	margin-top:170px;
+	border:4px #27AE60 dashed;
 }

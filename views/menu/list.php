@@ -60,6 +60,7 @@
                                                 <th>Jenis Menu</th>
                                                   <th>Harga</th>
                                                    <th>Gambar</th>
+                                                   <th>Owner</th>
                                                    <th>Config</th> 
                                             </tr>
                                         </thead>
@@ -77,7 +78,7 @@
 													$gambar = ($row['menu_img']) ? $row['menu_img'] : "default.jpg";
 													?>
                                                  <td><img src="../img/menu/<?= $gambar?>" height="30" /></td>
-                                               
+                                               <td><?= $row['partner_name']?></td>
                                               <td style="text-align:center;">
 
                                                     <a href="menu.php?page=form&id=<?= $row['menu_id']?>" class="btn btn-default" ><i class="fa fa-pencil"></i></a>

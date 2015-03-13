@@ -1,4 +1,4 @@
-
+<span class="tooltip-text2 scrollpanel no4">
 <table width="100%" border="0" cellspacing="0" cellpadding="5" class="table_item">
  <thead>
  <tr>
@@ -44,3 +44,4 @@
     <td width="50%"><a href="javascript: save_payment(<?= $row['table_id'] ?>)" style="text-decoration:none;"><div class="btn_payment">PAYMENT</div></a></td>
   </tr>
 </table>
+</span>

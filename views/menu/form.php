@@ -61,7 +61,18 @@
                                             <input required type="text" name="i_price" class="form-control" placeholder="Masukkan harga ..." value="<?= $row->menu_price ?>"/>
                                         </div>
                                        
-                                        
+                                          <div class="form-group">
+                                          <label>Owner</label>
+                                           <select id="basic" name="i_partner_id" size="1" class="selectpicker show-tick form-control" data-live-search="true" />
+                                           <?php
+                                           while($r_partner = mysql_fetch_array($query_partner)){
+										   ?>
+                                             <option value="<?= $r_partner['partner_id'] ?>" <?php if($row->partner_id == $r_partner['partner_id']){ ?> selected="selected"<?php } ?>><?= $r_partner['partner_name']?></option>
+                                             <?php
+										   }
+											 ?>
+                                           </select>                                    
+                                  		</div>
                                         
                                         </div>
                                         <div class="col-md-3">

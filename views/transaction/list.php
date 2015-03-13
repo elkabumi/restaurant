@@ -82,6 +82,23 @@ function get_total_price(){
 	document.getElementById("i_total_harga_rupiah").value = CurrencyFormat(total_harga);
 }
 
+function confirm_delete_history(id){
+	var a = confirm("Anda yakin ingin menghapus order ini ?");
+	var table_id = document.getElementById("i_table_id").value;
+	
+	if(a==true){
+		window.location.href = 'transaction.php?page=delete_history&table_id=' + table_id + '&id=' + id;
+	}
+}
+
+function load_data_history(id)
+{
+	//alert(id);
+	$("#table_history").load('transaction.php?page=list_history&table_id='+id); 
+}
+	
+
+
 </script>
 	
                 <?php
@@ -124,15 +141,12 @@ function get_total_price(){
                   
 <div class="container">
 			<!-- Top Navigation -->
-			<div class="codrops-top clearfix">
-				
-			</div>
-			<header>
-				<h1>Transaksi<span>Penjualan</span></h1>	
-			</header>
+		
 			
 			<section class="color-2">
             <div class="row">
+            
+            
             
             <div class="col-xs-6">
             <div class="form-group">
@@ -150,7 +164,7 @@ function get_total_price(){
              <div class="col-xs-6">
              <div class="form-group">
                                          <label>Meja </label>
-                                        <select name="i_table_id"  class="selectpicker show-tick form-control" data-live-search="true">
+                                        <select name="i_table_id" id="i_table_id"  class="selectpicker show-tick form-control" data-live-search="true" onChange="load_data_history(this.value)" >
                                         <?php
                                         $query_table = mysql_query("select a.*, b.building_name
 																	from tables a
@@ -168,6 +182,17 @@ function get_total_price(){
            
             
             </div>
+            
+              <div id="table_history">
+
+             <?php
+			 if($check_table > 0 ){
+             include 'history_order.php';
+			 }
+			 ?>
+			</div>             
+             
+            
                <div class="row">
 				<p>
                  
@@ -176,7 +201,7 @@ function get_total_price(){
                                             while($row = mysql_fetch_array($query)){
                                             ?>
                                          
-                     <div class="col-xs-2">
+                     <div class="col-xs-2" style="margin-bottom:10px;">
                      
 					<button type="button" class="btn_click btn-new btn-2new" onClick="add_menu(<?= $row['menu_id']?>)"><div class="title_menu" id="title_menu_<?= $row['menu_id']?>"><?= $row['menu_name'] ?></div>
                     <?php
@@ -254,4 +279,4 @@ function get_total_price(){
               </form>
               
               
-             
+            

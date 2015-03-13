@@ -6,7 +6,7 @@ $page = null;
 $page = (isset($_GET['page'])) ? $_GET['page'] : "list";
 $title = ucfirst("transaction");
 
-$_SESSION['menu_active'] = 2;
+$_SESSION['menu_active'] = 3;
 
 switch ($page) {
 	case 'list':
@@ -19,10 +19,15 @@ switch ($page) {
 		$table_id = "";
 		if(isset($_GET['table_id'])){
 			$table_id = $_GET['table_id'];
+			$query_history = select_history($table_id);
 			
 		}
 		
-		
+		if($table_id == ""){
+			$check_table = 0;
+		}else{
+			$check_table = check_table($table_id);
+		}
 		$query = select();
 		$query2 = select();
 		$query_find = select();
@@ -49,6 +54,12 @@ switch ($page) {
 		//echo $tanggal;
 		
 		if($i_total_harga > 0){
+			
+			$check_table = check_table($i_table_id);
+			
+			if($check_table > 0){
+				$transaction_id = get_transaction_id_old($i_table_id);
+			}else{
 			$data = "'',
 					'$i_table_id',
 					'$tanggal', 
@@ -56,7 +67,8 @@ switch ($page) {
 			";
 			
 			create_config("transactions_tmp", $data);
-			$transaction_id = mysql_insert_id();
+				$transaction_id = mysql_insert_id();
+			}
 			
 			$query = select();
 			while($row = mysql_fetch_array($query)){
@@ -64,22 +76,42 @@ switch ($page) {
 				
 				if($jumlah > 0){
 					$total = $jumlah * $row['menu_price'];
-					$data_detail = "'',
+					
+					$check_history = check_history($i_table_id, $row['menu_id']);
+					
+					if($check_history > 0){
+						
+						$data_history = get_data_history($i_table_id, $row['menu_id']);
+						$row_history = mysql_fetch_array($data_history);
+						
+						$new_qty = $row_history['transaction_detail_qty'] + $jumlah;
+						$new_total = $new_qty * $row['menu_price'];
+						
+						$data_detail = "transaction_detail_qty = '$new_qty', 
+										transaction_detail_total = '$new_total'
+									";
+						update_config("transaction_tmp_details", $data_detail, "transaction_detail_id", $row_history['transaction_detail_id']);
+					
+					}else{
+					
+						$data_detail = "'',
 									'$transaction_id',
 									'".$row['menu_id']."',
 									'".$row['menu_price']."',
 									'$jumlah',
 									'$total'
 									";
-					create_config("transaction_tmp_details", $data_detail);
+						create_config("transaction_tmp_details", $data_detail);
+					}
 				}
 				
 				
 				
 			}
-			header("Location: transaction.php?page=list&did=1&date=$i_date");
+			header("Location: order.php");
+			//header("Location: transaction.php?page=list&table_id=$i_table_id");
 		}else{
-			header("Location: transaction.php?page=list&err=1&date=$i_date");
+			header("Location: transaction.php?page=list&err=1&table_id=$i_table_id");
 		}
 	
 	break;
@@ -94,6 +126,31 @@ switch ($page) {
 		
 		
 		break;
+		
+	case 'delete_history':
+
+		$id = get_isset($_GET['id']);	
+		$table_id = get_isset($_GET['table_id']);	
+		
+		
+		
+		delete_history($id);
+
+		header("Location: transaction.php?table_id=$table_id&did=3");
+
+	break;
+	
+	case 'list_history':
+		//get_header($title);
+		$table_id = get_isset($_GET['table_id']);
+		
+		$check_table = check_table($table_id);
+		if($check_table > 0){
+			$query_history = select_history($table_id);
+			include '../views/transaction/history_order.php';
+		}
+		//get_footer();
+	break;
 }
 
 ?>

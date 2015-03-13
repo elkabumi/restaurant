@@ -24,6 +24,7 @@ switch ($page) {
 
 		$close_button = "menu.php?page=list";
 		$query_menu_type = select_menu_type();
+		$query_partner = select_partner();
 
 		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
 		if($id){
@@ -37,9 +38,10 @@ switch ($page) {
 			$row = new stdClass();
 	
 			$row->menu_name = false;
-			$row->menu_type_id = false;
+			$row->menu_type_id = 9;
 			$row->menu_price = false;
 			$row->menu_img = false;
+			$row->partner_id = false;
 
 			$action = "menu.php?page=save";
 		}
@@ -57,6 +59,7 @@ switch ($page) {
 		$i_name = get_isset($i_name);
 		$i_menu_type_id = get_isset($i_menu_type_id);
 		$i_price = get_isset($i_price);
+		$i_partner_id = get_isset($i_partner_id);
 		
 		$path = "../img/menu/";
 		$i_img_tmp = $_FILES['i_img']['tmp_name'];
@@ -67,7 +70,8 @@ switch ($page) {
 					'$i_menu_type_id', 
 					'$i_name',
 					'$i_price', 
-					'$i_img'
+					'$i_img',
+					'$i_partner_id'
 			";
 			
 			//echo $data;
@@ -90,6 +94,8 @@ switch ($page) {
 		$i_name = get_isset($i_name);
 		$i_menu_type_id = get_isset($i_menu_type_id);
 		$i_price = get_isset($i_price);
+		$i_partner_id = get_isset($i_partner_id);
+		
 		
 		$path = "../img/menu/";
 		$i_img_tmp = $_FILES['i_img']['tmp_name'];
@@ -107,7 +113,8 @@ switch ($page) {
 					$data = " menu_name = '$i_name', 
 							menu_type_id = '$i_menu_type_id',
 							menu_price = '$i_price',
-							menu_img = '$i_img'
+							menu_img = '$i_img',
+							partner_id = '$i_partner_id'
 
 					";
 				}
@@ -116,7 +123,8 @@ switch ($page) {
 			}else{
 				$data = " menu_name = '$i_name', 
 							menu_type_id = '$i_menu_type_id',
-							menu_price = '$i_price'
+							menu_price = '$i_price',
+							partner_id = '$i_partner_id'
 					";
 			}
 

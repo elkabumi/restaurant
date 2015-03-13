@@ -5,8 +5,11 @@
                             
                             <div class="box">
                              
-                                <div class="box-body2 table-responsive">
-                                    <table id="example_simple" class="table table-bordered table-striped">
+                              <div class="box-body2 table-responsive">
+                              <div class="box-header" style="cursor: move;">
+<h3 class="box-title"><strong>DETAIL PER MENU</strong></h3>
+</div>
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                             <th width="5%">No</th>
@@ -40,16 +43,16 @@
 											$no_item++;
                                             }
                                             ?>
+                                            </tbody>
+                                            <tfoot>
 											<tr>
-                                            <td></td>
-                                             <td></td>
-                                              <td></td>
-                                                 <td  style="font-size:22px; font-weight:bold;">TOTAL</td>
+                                            
+                                                 <td colspan="4" align="right"  style="font-size:22px; font-weight:bold;">TOTAL</td>
                                                 <td><?= tool_format_number_report($grand_total)?></td>
                                              
-                                                 </tr>
-                                          
-                                        </tbody>
+                                              </tr>
+                                          </tfoot>
+                                        
                                          
                                     </table>
 

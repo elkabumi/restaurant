@@ -28,30 +28,30 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                    
                  <ul class="sidebar-menu">  
-                  <li class="treeview <?php //if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 6){ echo "active"; }?>">
+                  <li class="treeview <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 1){ echo "active"; }?>">
                             <a href="#">
                                 <i class="fa fa-list-alt"></i>
                                 <span>Master</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                
+                                <li><a href="building.php?page=list"><i class="fa fa-home"></i>Room</a></li> 
                                 <li><a href="master_table.php?page=list"><i class="fa fa-cutlery"></i>Table</a></li>
                                 <li><a href="menu.php?page=list"><i class="fa fa-glass"></i>Menu</a></li>
-                               
+                               <li><a href="partner.php?page=list"><i class="fa fa-smile-o"></i>Partner</a></li>
                              
                             </ul>
                   </li>
                   
                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 2){ echo "class='active'"; } ?>>
-                            <a href="table.php">
+                            <a href="order.php">
                                  <i class="fa fa-cutlery"></i>
                                 <span>Order</span>
                             </a>
                             
                   </li>
                   
-                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 2){ echo "class='active'"; } ?>>
+                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 3){ echo "class='active'"; } ?>>
                             <a href="transaction.php">
                                  <i class="fa fa-pencil-square-o"></i>
                                 <span>Transaksi</span>
@@ -59,72 +59,22 @@
                             
                   </li>
                   
-                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 3){ echo "class='active'"; } ?>>
+                  <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 4){ echo "class='active'"; } ?>>
+                            <a href="table.php">
+                                 <i class="fa fa-asterisk"></i>
+                                <span>Setting Table</span>
+                            </a>
+                            
+                  </li>
+                  
+                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 5){ echo "class='active'"; } ?>>
                             <a href="report_detail.php">
                                  <i class="fa fa-list-alt"></i>
                                 <span>laporan</span>
                             </a>
                             
                   </li>
-                                <!--<li><a href="planting_distance_model.php?page=list"><i class="fa fa-chevron-circle-right"></i>Model Jarak Tanam</a></li>
-                                <li><a href="treatment_type.php?page=list"><i class="fa fa-chevron-circle-right"></i>Tipe Treatment</a></li>
-                                <li><a href="location.php?page=list"><i class="fa fa-chevron-circle-right"></i>Lokasi</a></li>
-                               
-                             	
-                            </ul>
-                  </li>
-                  
-                    <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 2){ echo "class='active'"; } ?>>
-                            <a href="farmer.php">
-                                <i class="fa fa-user"></i>
-                                <span>Petani</span>
-                               
-                            </a>
-                            
-                  </li>
-                      <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 3){ echo "class='active'"; } ?>>
-                            <a href="land.php">
-                                <i class="fa fa-pagelines"></i>
-                                <span>Hamparan Tanah</span>
-
-                               
-                            </a>
-                            
-                 
-                  
-                        <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 4){ echo "class='active'"; } ?>>
-                            <a href="planting_process.php">
-                                <i class="fa  fa-calendar"></i>
-                                <span>Proses Tanam</span>
-                               
-                            </a>
-                            
-                  </li>
-                  
-                  
-                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 5){ echo "class='active'"; } ?>>
-                            <a href="treatment.php">
-                                <i class="fa fa-leaf"></i>
-                                <span>Treatment</span>
-                               
-                            </a>
-                            
-                  </li>
-                 
-                   <li class="treeview <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 6){ echo "active"; }?>">
-                            <a href="#">
-                                <i class="fa fa-search"></i>
-                                <span>Pencarian</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                
-                                <li><a href="search_harvest.php?page=list"><i class="fa fa-chevron-circle-right"></i>Panen</a></li>
-                                <li><a href="search_farmer.php?page=list"><i class="fa fa-chevron-circle-right"></i>Petani</a></li>
-                               
                              
-                            </ul>
-                  </li>-->
                         
                     <?php
                     if($_SESSION['user_type_id'] == 1){

@@ -1,9 +1,10 @@
 <?php
 
 function select(){
-	$query = mysql_query("select a.* , b.menu_type_name
+	$query = mysql_query("select a.* , b.menu_type_name, c.partner_name
 							from menus a
 							join menu_types b on b.menu_type_id = a.menu_type_id 
+							join partners c on c.partner_id = a.partner_id
 							order by menu_id");
 	return $query;
 }
@@ -13,6 +14,10 @@ function select_menu_type(){
 	return $query;
 }
 
+function select_partner(){
+	$query = mysql_query("select * from partners order by partner_id");
+	return $query;
+}
 
 function read_id($id){
 	$query = mysql_query("select *

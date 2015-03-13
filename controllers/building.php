@@ -6,7 +6,7 @@ $page = null;
 $page = (isset($_GET['page'])) ? $_GET['page'] : "list";
 $title = ucwords("Master Ruang");
 
-$_SESSION['table_active'] = 1;
+$_SESSION['menu_active'] = 1;
 
 switch ($page) {
 	case 'list':
@@ -72,7 +72,7 @@ switch ($page) {
 		$id = get_isset($_GET['id']);
 		$i_name = get_isset($i_name);
 		
-					$data = " table_name = '$i_name'
+					$data = " building_name = '$i_name'
 					";
 			
 			update($data, $id);

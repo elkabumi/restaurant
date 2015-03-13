@@ -2,7 +2,7 @@
 .footer_fixed{
 	height:100px;
 	width:100%;
-	background:#fff;
+	background:#27AE60;
 	position:fixed;
 	z-index:1000;
 }
@@ -17,7 +17,7 @@
 	position: relative;
 	padding: 0 1em;
 	border: none;
-	background-color: #e85657;
+	background-color: #27AE60;
 	color: #f9f6e5;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -190,7 +190,7 @@
 .morph-button-modal-3 > button,
 .morph-button-modal-3 .morph-content {
 	background-color: #fef0e3;
-	color: #e75854;
+	color: #27AE60;
 }
 
 .morph-button-modal-4 {
@@ -359,7 +359,7 @@
 }
 
 .morph-button-sidebar .morph-content {
-	background: #e85657;
+	background: #27AE60;
 	z-index:9999;
 }
 

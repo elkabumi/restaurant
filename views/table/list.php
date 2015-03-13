@@ -22,7 +22,6 @@ if(!$_SESSION['login']){
 			if(question==true){
 				window.location.href = 'table.php?page=save_payment&table_id='+id+'&building_id='+<?= $building_id ?>;
 			}
-		   
 	   }
        </script>
     
@@ -184,29 +183,13 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 					</div><!-- morph-button -->
 
 					<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-						<button type="button"  onClick="javascript: window.location.href = 'home.php'; ">MENU</button>
+						<button type="button"  onClick="javascript: window.location.href = 'home.php'; ">BACK TO MENU</button>
 						
 					</div><!-- morph-button -->
 
-					<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-						<button type="button">LOGOUT</button>
-						<div class="morph-content">
-							<div>
-								<div class="content-style-form content-style-form-2">
-									<span class="icon icon-close">Close the dialog</span>
-									<h2>Anda yakin ingin <strong>logout</strong> ?</h2>
-									<form action="<?= $action_logout?>" method="post" enctype="multipart/form-data" role="form">
-										
-									
-										<p>
-										  <input type="submit" name="button" id="button" value="YA" class="button_building">
-										</p>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div><!-- morph-button -->
  </div>
+ 
+ <div class="border_meja"></div>
  
  
  
@@ -214,6 +197,7 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 	$q_building4 = mysql_query("select * from buildings where building_id = '$building_id' order by building_id");
 	while($r_building4 = mysql_fetch_array($q_building4)){
 		?>
+        
 <div id="content_new">
 	
 	<?php
@@ -225,28 +209,11 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 	?>
 	<div id="makeMeDraggable_<?= $row['table_id']?>" class="meja">
 	
-				<span class="tooltip tooltip-effect-1">
+				<span class="">
 				<div class="tooltip-item"><?= $row['table_name'] ?>
-				<?php
-                if($get_item > 0 ){
-				?>
-              
-				<span class="count_item"><?= $get_item ?></span>
-                <?php
-				}
-				?>
+			
                 </div>
-				<span class="tooltip-content clearfix">
-					<span class="tooltip-text">
-						<?php 
-						if($get_item > 0 ){
-							include('table_item.php');
-						}else{
-							include('table_empty.php');	
-						}
-						?>
-					</span>
-				</span>
+				
 			</span> 
 	 </div>
 	<?php
@@ -285,9 +252,8 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 			</div>
 		</div><!-- morph-button -->
         
-        
-        
-        
+       
+   
 
 	<script src="../js/button_component/classie.js"></script>
 		<script src="../js/button_component/uiMorphingButton_fixed.js"></script>
