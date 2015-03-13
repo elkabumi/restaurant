@@ -5,6 +5,11 @@ function select(){
 	return $query;
 }
 
+function select_cat(){
+	$query = mysql_query("select * from menu_types order by menu_type_id");
+	return $query;
+}
+
 function select_history($table_id){
 	 $query = mysql_query("select b.*, c.menu_name 
 							  from transactions_tmp a

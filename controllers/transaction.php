@@ -28,6 +28,7 @@ switch ($page) {
 		}else{
 			$check_table = check_table($table_id);
 		}
+		$query_cat = select_cat();
 		$query = select();
 		$query2 = select();
 		$query_find = select();

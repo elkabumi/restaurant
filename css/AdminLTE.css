@@ -2842,14 +2842,7 @@ Component: timeline
 	margin-left:20px;
 }
 
-.otheader_title{
-	color:#fff;
-	font-weight:bold;
-	height:50px;
-	padding: 15px 5px;
-	margin-bottom:10px;
-	
-}
+
 .otheader_title span{
 	background-color:#00C0EF;
 	padding: 15px 10px;
@@ -2966,4 +2959,19 @@ Component: timeline
   width: 100%; 
   position: fixed;
   z-index:9999;
+}
+
+.otheader_title {
+  background-color:#81daf6;
+  border-left-color:#7acee9;
+  border-left-style:solid;
+  border-left-width:10px;
+  color:#FFFFFF;
+  font-weight:bold;
+  padding:10px 5px 10px 10px;
+  width:30%;
+  margin-top:10px;
+  margin-bottom:10px;
+  margin-left:auto;
+  margin-right:auto;
 }

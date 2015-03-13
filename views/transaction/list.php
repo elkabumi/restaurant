@@ -190,18 +190,31 @@ function load_data_history(id)
              include 'history_order.php';
 			 }
 			 ?>
-			</div>             
-             
+			</div>  
+           
             
                <div class="row">
+               
+               <?php
+                while($row_cat = mysql_fetch_array($query_cat)){
+			   ?>
+               
+               <!-- batas kategori -->
+              
+                <div class="col-xs-12">
+                <div class="otheader_title"><?= $row_cat['menu_type_name']?></div>
+                </div>
+                
+                
 				<p>
                  
                  <?php
                                            $no = 1;
+										   $query = mysql_query("select * from menus where menu_type_id = '".$row_cat['menu_type_id']."' order by menu_id");
                                             while($row = mysql_fetch_array($query)){
                                             ?>
                                          
-                     <div class="col-xs-2" style="margin-bottom:10px;">
+                     <div class="col-xs-2" style="margin-bottom:15px;">
                      
 					<button type="button" class="btn_click btn-new btn-2new" onClick="add_menu(<?= $row['menu_id']?>)"><div class="title_menu" id="title_menu_<?= $row['menu_id']?>"><?= $row['menu_name'] ?></div>
                     <?php
@@ -222,6 +235,12 @@ function load_data_history(id)
                                             ?>
                                             
 				</p>
+                
+                  <!-- batas kategori -->
+                  <?php
+				}
+				  ?>
+                
 				 </div>
                 
 			</section>
