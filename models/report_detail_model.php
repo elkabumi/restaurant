@@ -71,6 +71,25 @@ function get_menu_terlaris($date1, $date2){
 	return $result;
 }
 
+function select_partner($date1, $date2){
+	$query = mysql_query("SELECT a.partner_id, a.partner_name, jumlah_qty, jumlah_margin
+								FROM partners a
+								JOIN (
+								
+									SELECT sum(transaction_detail_qty) as jumlah_qty, sum( transaction_detail_qty * transaction_detail_margin_price ) AS jumlah_margin, partner_id
+									FROM transaction_details a
+									JOIN transactions b on b.transaction_id = a.transaction_id
+									JOIN menus c on c.menu_id = a.menu_id
+									WHERE  b.transaction_date >= '$date1 00:00:00'
+									AND b.transaction_date <= '$date2 23:59:59'
+									AND partner_id <> 1
+									GROUP BY partner_id
+								) AS b ON b.partner_id = a.partner_id"
+								
+								);
+	
+	return $query;
+}
 
 
 ?>

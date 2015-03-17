@@ -309,6 +309,7 @@
 .btn-2new:hover {
 	box-shadow: 0 4px #5B7D4B;
 	top: 2px;
+	background:#5b7d4b;
 }
 
 .btn-2new:active {

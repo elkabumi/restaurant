@@ -7,48 +7,47 @@
                              
                               <div class="box-body2 table-responsive">
                               <div class="box-header" style="cursor: move;">
-<h3 class="box-title"><strong>Detail Per Menu</strong></h3>
+<h3 class="box-title"><strong>Menu Partner</strong></h3>
 </div>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                             <th width="5%">No</th>
-                                                <th>Nama Menu</th>
-                                                <th>Harga</th>
+                                                <th>Nama Partner</th>
                                                 <th>Qty</th>
-                                                <th>Total</th>
+                                                <th>Total Margin</th>
                                                 
                                             </tr>
                                         </thead>
                                         <tbody>
                                                  <?php
-                                           $no_item = 1;
-										   $grand_total = 0;
-                                            while($row_item = mysql_fetch_array($query_item)){
-												$jumlah = ($row_item['jumlah']) ? $row_item['jumlah'] : 0;
-												$total = $jumlah * $row_item['menu_price'];
+                                           $no_partner = 1;
+										   $grand_total_partner = 0;
+                                            while($row_partner = mysql_fetch_array($query_partner)){
+												
+												//$total_partner = $jumlah * $row_partner['menu_price'];
                                        ?>
                                             <tr>
-                                            <td><?= $no_item ?></td>
-												<td><?= $row_item['menu_name']; ?></td>
-                                                <td><?= tool_format_number($row_item['menu_price']); ?></td>
-                                                 <td><?= tool_format_number($jumlah)?></td>
-                                                <td><?= tool_format_number($total)?></td>
+                                            <td><?= $no_partner	 ?></td>
+												<td><?= $row_partner['partner_name']; ?></td>
+                                                <td><?= tool_format_number($row_partner['jumlah_qty']); ?></td>
+                                                 <td><?= tool_format_number($row_partner['jumlah_margin']); ?></td>
+                                               
                                              
                                                  </tr>
                                         
 
                                               <?php
-											  $grand_total = $grand_total + $total;
-											$no_item++;
+											  $grand_total_partner = $grand_total_partner + $row_partner['jumlah_margin'];
+											$no_partner++;
                                             }
                                             ?>
                                             </tbody>
                                             <tfoot>
 											<tr>
                                             
-                                                 <td colspan="4" align="right"  style="font-size:22px; font-weight:bold;">TOTAL</td>
-                                                <td><?= tool_format_number_report($grand_total)?></td>
+                                                 <td colspan="3" align="right"  style="font-size:22px; font-weight:bold;">TOTAL</td>
+                                                <td><?= tool_format_number_report($grand_total_partner)?></td>
                                              
                                               </tr>
                                           </tfoot>

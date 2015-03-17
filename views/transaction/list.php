@@ -168,11 +168,18 @@ function load_data_history(id)
                                         <?php
                                         $query_table = mysql_query("select a.*, b.building_name
 																	from tables a
-																	join buildings b on b.building_id = a.building_id
+																	left join buildings b on b.building_id = a.building_id
+																	order by table_id
 																	");
                                         while($row_table = mysql_fetch_array($query_table)){
                                         ?>
-                                        <option value="<?= $row_table['table_id']?>" <?php if($row_table['table_id'] == $table_id){ ?> selected="selected"<?php }?>><?= $row_table['table_name']." (".$row_table['building_name'].")" ?></option>
+                                        <option value="<?= $row_table['table_id']?>" <?php if($row_table['table_id'] == $table_id){ ?> selected="selected"<?php }?>><?php
+										if($row_table['table_id'] != 0){
+											$building = " (".$row_table['building_name'].")";
+										}else{
+											$building= "";
+										}
+										echo $row_table['table_name'].$building; ?></option>
                                         <?php
                                         }
                                         ?>

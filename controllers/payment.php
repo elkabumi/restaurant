@@ -12,8 +12,9 @@ switch ($page) {
 	case 'list':
 		
 		$table_id = get_isset($_GET['table_id']);
-		$building_id = get_isset($_GET['building_id']);
+		$building_id = (isset($_GET['building_id'])) ? $_GET['building_id'] : 0;
 		$query = select($table_id);
+
 		$action = "order.php?page=save_payment&table_id=".$table_id."&building_id=".$building_id;
 
 		include '../views/payment/list.php';

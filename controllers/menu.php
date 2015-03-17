@@ -39,6 +39,8 @@ switch ($page) {
 	
 			$row->menu_name = false;
 			$row->menu_type_id = 9;
+			$row->menu_original_price = false;
+			$row->menu_margin_price = false;
 			$row->menu_price = false;
 			$row->menu_img = false;
 			$row->partner_id = false;
@@ -58,6 +60,8 @@ switch ($page) {
 
 		$i_name = get_isset($i_name);
 		$i_menu_type_id = get_isset($i_menu_type_id);
+		$i_original_price = get_isset($i_original_price);
+		$i_margin_price = get_isset($i_margin_price);
 		$i_price = get_isset($i_price);
 		$i_partner_id = get_isset($i_partner_id);
 		
@@ -69,6 +73,8 @@ switch ($page) {
 			$data = "'',
 					'$i_menu_type_id', 
 					'$i_name',
+					'$i_original_price',
+					'$i_margin_price',
 					'$i_price', 
 					'$i_img',
 					'$i_partner_id'
@@ -93,6 +99,8 @@ switch ($page) {
 		$id = get_isset($_GET['id']);
 		$i_name = get_isset($i_name);
 		$i_menu_type_id = get_isset($i_menu_type_id);
+		$i_original_price = get_isset($i_original_price);
+		$i_margin_price = get_isset($i_margin_price);
 		$i_price = get_isset($i_price);
 		$i_partner_id = get_isset($i_partner_id);
 		
@@ -112,6 +120,8 @@ switch ($page) {
 					
 					$data = " menu_name = '$i_name', 
 							menu_type_id = '$i_menu_type_id',
+							menu_original_price = '$i_original_price',
+							menu_margin_price = '$i_margin_price',
 							menu_price = '$i_price',
 							menu_img = '$i_img',
 							partner_id = '$i_partner_id'
@@ -123,6 +133,8 @@ switch ($page) {
 			}else{
 				$data = " menu_name = '$i_name', 
 							menu_type_id = '$i_menu_type_id',
+							menu_original_price = '$i_original_price',
+							menu_margin_price = '$i_margin_price',
 							menu_price = '$i_price',
 							partner_id = '$i_partner_id'
 					";

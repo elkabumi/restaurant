@@ -98,6 +98,8 @@ switch ($page) {
 						$data_detail = "'',
 									'$transaction_id',
 									'".$row['menu_id']."',
+									'".$row['menu_original_price']."',
+									'".$row['menu_margin_price']."',
 									'".$row['menu_price']."',
 									'$jumlah',
 									'$total'
@@ -109,7 +111,11 @@ switch ($page) {
 				
 				
 			}
-			header("Location: order.php");
+			if($i_table_id == 0){
+				header("Location: payment.php?table_id=0");
+			}else{
+				header("Location: order.php");
+			}
 			//header("Location: transaction.php?page=list&table_id=$i_table_id");
 		}else{
 			header("Location: transaction.php?page=list&err=1&table_id=$i_table_id");
