@@ -24,10 +24,10 @@ if(!$_SESSION['login']){
 		<link rel="stylesheet" href="../css/vertical_scroll_new/jquery.mCustomScrollbar.css">
        
        <script type="text/javascript">
-       function save_payment(id){
-		 	var question = confirm("Anda yakin ingin melakukan payment ?");
+       function cancel_order(id){
+		 	var question = confirm("Anda yakin ingin cancel order ?");
 			if(question==true){
-				window.location.href = 'order.php?page=save_payment&table_id='+id+'&building_id='+<?= $building_id ?>;
+				window.location.href = 'order.php?page=cancel_order&table_id='+id+'&building_id='+<?= $building_id ?>;
 			}
 	   }
        </script>

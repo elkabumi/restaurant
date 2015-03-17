@@ -49,6 +49,7 @@ switch ($page) {
 			
 			$query_item = select_detail($date1, $date2);
 			$query_partner = select_partner($date1, $date2);
+			$query_tr = select_transaction($date1, $date2);
 			
 			//fungsi backup
 
@@ -68,6 +69,7 @@ switch ($page) {
             include '../views/report_detail/form_result.php'; 
 			include '../views/report_detail/list_item.php';
 			include '../views/report_detail/list_partner.php';
+			include '../views/report_detail/list_transaction.php';
 		}
 		
 		
@@ -318,6 +320,21 @@ switch ($page) {
 			include '../views/report/report_detail_tagihan.php';
 			
 
+	break;
+	
+	case 'delete_transaction':
+		
+
+		$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+			
+			extract($_POST);
+			$i_date = get_isset($_GET['date']);
+			$date_default = $i_date;
+			
+		
+		delete_transaction($id);
+		
+		header("Location: report_detail.php?page=list&preview=1&date=$date_default");
 	break;
 	
 }

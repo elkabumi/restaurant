@@ -118,6 +118,15 @@ switch ($page) {
 		
 	break;
 	
+	case 'cancel_order':
+		$table_id = $_GET['table_id'];
+		$building_id = $_GET['building_id'];
+		
+		
+		cancel_order($table_id);
+		header("location: order.php?building_id=$building_id");
+	break;
+	
 	
 }
 

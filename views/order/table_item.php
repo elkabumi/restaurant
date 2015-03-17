@@ -41,13 +41,18 @@
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="40%"><a href="transaction.php?table_id=<?= $row['table_id']?>" style="text-decoration:none;"><div class="btn_edit_item">EDIT ORDER</div></a></td>
-    <td width="30%">
+    <td width="25%"><a href="transaction.php?table_id=<?= $row['table_id']?>" style="text-decoration:none;"><div class="btn_edit_item">EDIT </div></a></td>
+    <td width="25%">
     <a href="payment.php?table_id=<?= $row['table_id']?>&building_id=<?= $building_id?>" style="text-decoration:none;"><div class="btn_payment">BAYAR</div></a>
       
     
     </td>
-     <td width="30%">
+    <td width="25%">
+    <a href="#" onclick="javascript: cancel_order(<?= $row['table_id']?>)"><div class="btn_payment" style="background:#f56954">CANCEL</div></a>
+      
+    
+    </td>
+     <td width="25%">
     <a href="print_order.php?table_id=<?= $row['table_id']?>&building_id=<?= $building_id?>" style="text-decoration:none;"><div class="btn_print">PRINT</div></a>
       
     

@@ -88,5 +88,18 @@ function get_data_total($table_id){
 	return $row['total'];				 
 }
 
+function cancel_order($table_id){
+		$query =  mysql_query("select * 
+								from transactions_tmp a
+								where a.table_id = '$table_id'
+								");
+		while($row = mysql_fetch_array($query)){
+			
+			mysql_query("delete from transaction_tmp_details where transaction_id = '".$row['transaction_id']."'");
+			
+		}
+		mysql_query("delete from transactions_tmp where table_id = '$table_id'");
+}
+
 
 ?>

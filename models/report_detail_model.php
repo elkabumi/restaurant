@@ -19,6 +19,20 @@ function select_detail($date1, $date2){
 	return $query;
 }
 
+function select_transaction($date1, $date2){
+						
+	$query = mysql_query("select b.*, c.table_name, d.building_name 
+									from transactions b 
+									left join tables c on c.table_id = b.table_id
+									left join buildings d on d.building_id = c.building_id
+									WHERE  b.transaction_date >= '$date1 00:00:00'
+									AND b.transaction_date <= '$date2 23:59:59'
+									order by transaction_id
+						");
+	
+	return $query;
+}
+
 function read_id($id){
 	$query = mysql_query("SELECT a.*, b.unit_name, c.transaction_type_name
 							FROM  transactions a
@@ -89,6 +103,14 @@ function select_partner($date1, $date2){
 								);
 	
 	return $query;
+}
+
+
+function delete_transaction($transaction_id){
+		
+		mysql_query("delete from transaction_details where transaction_id = '".$row['transaction_id']."'");	
+		
+		mysql_query("delete from transactions where transaction_id = '$transaction_id'");
 }
 
 
