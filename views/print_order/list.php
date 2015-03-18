@@ -50,6 +50,7 @@ table{
 	border-radius:10px;
 	margin-top:10px;
 	padding:5px;
+	height:30px;
 }
 .back_to_order:hover{
 	background:#069;
@@ -85,5 +86,5 @@ table{
   }
  ?>
 </table>
-<a href="<?= $back_button ?>" style="text-decoration:none"><div class="back_to_order">KEMBALI</div></a>
+<a href="<?= $back_button ?>" style="text-decoration:none"><div class="back_to_order"></div></a>
 </body>

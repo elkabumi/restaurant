@@ -51,7 +51,7 @@ table{
 	text-align:center;
 	border-radius:10px;
 	margin-top:10px;
-	padding:5px;
+	padding:5px;height:30px;
 }
 .back_to_order:hover{
 	background:#069;
@@ -61,10 +61,10 @@ table{
 <!--<body>-->
 
 <div class="header">
-<span style="font-size:16px;">Kedai Taman <br>
-Soto Kudus</span><br>
-Jl. Gayungsari Timur X No.1 Surabaya<br />
-083831059355
+<span style="font-size:18px;">Soto Kudus<br>
+Kedai Taman </span><br>
+Jl. Taman Gayungsari Timur No.7 Surabaya<br />
+(031) 8381 9381
 
 </div>
 <br />
@@ -101,8 +101,8 @@ Jl. Gayungsari Timur X No.1 Surabaya<br />
 <br />
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:14px;">
   <tr>
-    <td><strong>Total</strong></td>
-    <td align="right"><strong><?= number_format($total_price)?></strong></td>
+    <td style="font-size:18px"><strong>Total</strong></td>
+    <td style="font-size:18px" align="right"><strong><?= number_format($total_price)?></strong></td>
   </tr>
   <tr>
     <td><strong>Bayar</strong></td>
@@ -120,5 +120,5 @@ Jl. Gayungsari Timur X No.1 Surabaya<br />
     <td align="center">TERIMA KASIH <br />ATAS<br /> KUNJUNGAN ANDA</td>
   </tr>
 </table>
-<a href="order.php" style="text-decoration:none"><div class="back_to_order">KEMBALI</div></a>
+<a href="order.php" style="text-decoration:none"><div class="back_to_order"></div></a>
 </body>

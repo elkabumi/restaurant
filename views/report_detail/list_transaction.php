@@ -39,7 +39,7 @@
                                                <td><?= tool_format_number($row_tr['transaction_change'])?></td>
                                                <td style="text-align:center;">
 
-                                                  
+                                                  <a href="print.php?transaction_id=<?= $row_tr['transaction_id']?>" class="btn btn-default" ><i class="fa fa-print"></i></a>
                                                     <a href="javascript:void(0)" onclick="confirm_delete(<?= $row_tr['transaction_id']; ?>,'report_detail.php?page=delete_transaction&date=<?= $_GET['date']?>&id=')" class="btn btn-default" ><i class="fa fa-trash-o"></i></a>
 
                                                 </td> 

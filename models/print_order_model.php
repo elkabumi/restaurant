@@ -3,7 +3,7 @@
 function select($table_id){
 	$query = mysql_query("select a.*, b.table_name
 							  from transactions_tmp a
-							  join tables b on b.table_id = b.table_id
+							  join tables b on b.table_id = a.table_id
 							  where a.table_id = '".$table_id."'");
 	return $query;
 }
