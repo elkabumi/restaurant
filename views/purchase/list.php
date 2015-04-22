@@ -73,7 +73,7 @@
                                             ?>
                                             <tr>
                                             <td><?= $no?></td>
-                                               <td><?= $row['purchase_date']?></td>
+                                               <td><?= format_date($row['purchase_date']); ?></td>
                                                 <td><?= $row['purchase_name']?></td>
                                                 <td><?= $row['unit_name']?></td>
                                                 <td><?= $row['purchase_qty']?></td>
@@ -98,7 +98,7 @@
                                         </tbody>
                                           <tfoot>
                                             <tr>
-                                                <td colspan="10"><a href="<?= $add_button ?>" class="btn btn-info " >Add</a></td>
+                                                <td colspan="9"><a href="<?= $add_button ?>" class="btn btn-info " >Add</a></td>
                                                
                                             </tr>
                                         </tfoot>

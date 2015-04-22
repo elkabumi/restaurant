@@ -19,19 +19,6 @@ function select_detail($date1, $date2){
 	return $query;
 }
 
-function select_transaction($date1, $date2){
-						
-	$query = mysql_query("select b.*, c.table_name, d.building_name 
-									from transactions b 
-									left join tables c on c.table_id = b.table_id
-									left join buildings d on d.building_id = c.building_id
-									WHERE  b.transaction_date >= '$date1 00:00:00'
-									AND b.transaction_date <= '$date2 23:59:59'
-									order by transaction_id
-						");
-	
-	return $query;
-}
 
 function read_id($id){
 	$query = mysql_query("SELECT a.*, b.unit_name, c.transaction_type_name
@@ -61,49 +48,49 @@ function get_total_penjualan($date1, $date2){
 							 ");
 	$result = mysql_fetch_array($query);
 	$result = ($result['jumlah']) ? $result['jumlah'] : "0"; 
+	$result = 25 / 100 * $result; 
 	return $result;
 }
 
-function get_menu_terlaris($date1, $date2){
-	$query = mysql_query("SELECT a.menu_id, a.menu_price, a.menu_name, jumlah
-								FROM menus a
-								JOIN (
-								
-									SELECT sum( transaction_detail_qty ) AS jumlah, menu_id
-									FROM transaction_details a
-									JOIN transactions b on b.transaction_id = a.transaction_id
-									WHERE  b.transaction_date >= '$date1 00:00:00'
-									AND b.transaction_date <= '$date2 23:59:59'
-									GROUP BY menu_id
-								) AS b ON b.menu_id = a.menu_id
-								order by jumlah desc, menu_id asc
-								limit 1
-								
+function get_total_pajak($date1, $date2){
+	$query = mysql_query("SELECT sum(transaction_total) as jumlah 
+							from transactions 
+							WHERE  transaction_date >= '$date1 00:00:00'
+							AND transaction_date <= '$date2 23:59:59'
 							 ");
 	$result = mysql_fetch_array($query);
-	$result = ($result['menu_name']) ? $result['menu_name'] : "-"; 
+	$result = ($result['jumlah']) ? $result['jumlah'] : "0"; 
+	$result = 25 / 100 * $result;
+	$result = 10 / 100 * $result; 
 	return $result;
 }
 
-function select_partner($date1, $date2){
-	$query = mysql_query("SELECT a.partner_id, a.partner_name, jumlah_qty, jumlah_margin
-								FROM partners a
-								JOIN (
-								
-									SELECT sum(transaction_detail_qty) as jumlah_qty, sum( transaction_detail_qty * transaction_detail_margin_price ) AS jumlah_margin, partner_id
-									FROM transaction_details a
-									JOIN transactions b on b.transaction_id = a.transaction_id
-									JOIN menus c on c.menu_id = a.menu_id
-									WHERE  b.transaction_date >= '$date1 00:00:00'
-									AND b.transaction_date <= '$date2 23:59:59'
-									AND partner_id <> 1
-									GROUP BY partner_id
-								) AS b ON b.partner_id = a.partner_id"
-								
-								);
-	
-	return $query;
+
+function get_total_penjualan_harian($date){
+	$query = mysql_query("SELECT sum(transaction_total) as jumlah 
+							from transactions 
+							WHERE  transaction_date >= '$date 00:00:00'
+							AND transaction_date <= '$date 23:59:59'
+							 ");
+	$result = mysql_fetch_array($query);
+	$result = ($result['jumlah']) ? $result['jumlah'] : "0";
+	$result = 25 / 100 * $result; 
+	return $result;
 }
+
+function get_total_pajak_harian($date){
+	$query = mysql_query("SELECT sum(transaction_total) as jumlah 
+							from transactions 
+							WHERE  transaction_date >= '$date 00:00:00'
+							AND transaction_date <= '$date 23:59:59'
+							 ");
+	$result = mysql_fetch_array($query);
+	$result = ($result['jumlah']) ? $result['jumlah'] : "0";
+	$result = 25 / 100 * $result; 
+	$result = 10 / 100 * $result; 
+	return $result;
+}
+
 
 
 function delete_transaction($transaction_id){

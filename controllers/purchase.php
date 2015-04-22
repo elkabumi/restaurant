@@ -30,6 +30,7 @@ switch ($page) {
 		if($id){
 
 			$row = read_id($id);
+			$row->purchase_date = format_date($row->purchase_date);
 		
 			$action = "purchase.php?page=edit&id=$id";
 		} else{

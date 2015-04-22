@@ -15,15 +15,47 @@ if(!$_SESSION['login']){
 		<link rel="stylesheet" type="text/css" href="../css/button_component/demo.css" />
 		<link rel="stylesheet" type="text/css" href="../css/button_component/component.css" />
 		<link rel="stylesheet" type="text/css" href="../css/button_component/content.css" />
+
+		<!-- progress button -->
+        <link rel="stylesheet" type="text/css" href="../css/progress_button/component.css" />
+        <!-- Bootstrap -->
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+         
+        <!-- jQuery 2.0.2 -->
+        <script src="../js/jquery.js"></script>
        
-       <script type="text/javascript">
-       function save_payment(id){
-		 	var question = confirm("Anda yakin ingin melakukan payment ?");
-			if(question==true){
-				window.location.href = 'table.php?page=save_payment&table_id='+id+'&building_id='+<?= $building_id ?>;
+        <script type="text/javascript">
+       		function save_all_position(){
+				
+				var scrollLeft = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+				var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+				
+				<?php
+				$q_save = select_table($building_id);
+				while($r_save = mysql_fetch_array($q_save)){
+				?>
+				
+				var element = document.getElementById('makeMeDraggable_<?php echo $r_save['table_id']?>');
+				var position = element.getBoundingClientRect();
+				var x = position.left;
+				var y = position.top;
+				
+				 $.ajax({
+					type: "GET",
+					url: "table.php?page=save_table_location",
+					data:{id:<?= $r_save['table_id']?>, data_x:x, data_y:y, data_top:scrollTop}
+				}).done(function( result ) {
+				   
+				});
+				
+				<?php
+				}
+				?>
+				alert("Simpan berhasil");
+				window.location.href = 'table.php?building_id=<?= $building_id?>';
 			}
-	   }
        </script>
+    
     
 		<script src="../js/button_component/modernizr.custom.js"></script>
 <style>
@@ -85,7 +117,7 @@ function init() {
 	    containment: '#content',
 	    cursor: 'move',
 	    snap: '',
-	    stop: handleDragStop_<?= $r2['table_id']?>
+	    stop: ''
 	  } );
 
  	<?php
@@ -141,9 +173,9 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 
 
 
- <div class="footer_fixed"> 
+ <div class="header_fixed"> 
  <div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-						<button type="button">ADD ROOM</button>
+						<button class="blue_color_button"  type="button">ADD ROOM</button>
 						<div class="morph-content">
 							<div>
 								<div class="content-style-form content-style-form-2">
@@ -164,7 +196,7 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
                     
                     
                      <div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-						<button type="button">ADD TABLE</button>
+						<button type="button" class="blue_color_button" >ADD TABLE</button>
 						<div class="morph-content">
 							<div>
 								<div class="content-style-form content-style-form-2">
@@ -183,8 +215,13 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 					</div><!-- morph-button -->
 
 					<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-						<button type="button"  onClick="javascript: window.location.href = 'home.php'; ">BACK TO MENU</button>
+						<button type="button" class="red_color_button"   onClick="javascript: window.location.href = 'home.php'; ">BACK TO MENU</button>
 						
+					</div><!-- morph-button -->
+
+					<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
+						
+						 <button class="progress-button red_color_button" data-style="shrink" data-horizontal onClick="save_all_position(); ">SAVE</button>
 					</div><!-- morph-button -->
 
  </div>
@@ -199,7 +236,7 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 		?>
         
 <div id="content_new">
-	
+	<span class="tooltip tooltip-effect-1">
 	<?php
 	$query =  mysql_query("select * from tables where building_id = '".$r_building4['building_id']."' order by table_id");
 	while($row = mysql_fetch_array($query)){
@@ -216,6 +253,7 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 				
 			</span> 
 	 </div>
+     </span>
 	<?php
 	
 	}
@@ -226,10 +264,10 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 	}
 ?>
 
-
+<div class="footer_fixed"> 
 
 			<div class="morph-button morph-button-sidebar morph-button-fixed">
-			<button type="button" style="height:60px !important; width:auto !important; padding-left:20px; padding-right:20px;"><?= $building_name?></button>
+			<button type="button" class="green_color_button"><?= $building_name?></button>
 			<div class="morph-content">
 				<div>
 					<div class="content-style-sidebar">
@@ -252,10 +290,10 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 			</div>
 		</div><!-- morph-button -->
         
-       
+       </div>
    
 
-	<script src="../js/button_component/classie.js"></script>
+	<script src="../js/progress_button/classie.js"></script>
 		<script src="../js/button_component/uiMorphingButton_fixed.js"></script>
 		<script>
 			(function() {
@@ -321,6 +359,28 @@ function handleDragStop_<?= $r4['table_id']?>( event, ui) {
 					bttn.addEventListener( 'click', function( ev ) { ev.preventDefault(); } );
 				} );
 			})();
+		</script>
+
+			<!-- progress button -->
+        <script src="../js/progress_button/progressButton.js"></script>
+		<script>
+			[].slice.call( document.querySelectorAll( 'button.progress-button' ) ).forEach( function( bttn ) {
+				new ProgressButton( bttn, {
+					callback : function( instance ) {
+						var progress = 0,
+							interval = setInterval( function() {
+								progress = Math.min( progress + Math.random() * 0.1, 1 );
+								instance._setProgress( progress );
+
+								if( progress === 1 ) {
+									instance._stop(1);
+									clearInterval( interval );
+								}
+							}, 200 );
+					}
+				} );
+				
+			} );
 		</script>
     
 		

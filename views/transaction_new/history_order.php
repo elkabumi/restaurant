@@ -34,7 +34,7 @@
                 <i class="fa fa-check"></i>
                 <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                 <b>Sukses !</b>
-               Delete Berhasil
+               Delete order berhasil
                 </div>
            
                 </section>
@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             
-                             <div class="title_page"> <?= $title ?></div>
+                             <div class="title_page"> List Order</div>
                             
                             <div class="box">
                              
@@ -56,49 +56,56 @@
                                         <thead>
                                             <tr>
                                             <th width="5%">No</th>
-                                                <th>User Login</th>
-                                                <th>Name</th>
-                                                  <th>Type</th>
-                                                   <th>Phone</th> 
+                                                <th>Nama Menu</th>
+												<th>Price</th>
+                                                  <th>Qty</th>
+                                                  <th>Total Price</th>
+                                                   <th>Config</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                           $no = 1;
-                                            while($row = mysql_fetch_array($query)){
+                                           $no_history = 1;
+										   $total = 0;
+                                            while($row_history = mysql_fetch_array($query_history)){
                                             ?>
                                             <tr>
-                                            <td><?= $no?></td>
-                                               <td><?= $row['user_login']?></td>
-                                                <td><?= $row['user_name']?></td>
-                                                <?php
-												$user_type = array('','Admin',"Owner", "Cashier");
-												
-                                                ?>
-                                                <td><?= $user_type[$row['user_type_id']]?></td>
-                                                 <td><?= $row['user_phone']?></td>
-                                               
-                                               <!-- <td style="text-align:center;">
+                                            <td><?= $no_history?></td>
+                                               <td><?= $row_history['menu_name']?></td>
+                                            
+                                                <td><?= tool_format_number($row_history['transaction_detail_price'])?></td>
+                                               <td><?= ($row_history['transaction_detail_qty'])?></td>
+                                           <td><?= tool_format_number($row_history['transaction_detail_total'])?></td>
+                                              <td style="text-align:center;">
 
-                                                    <a href="user.php?page=form&id=<?= $row['user_id']?>" class="btn btn-default" ><i class="fa fa-pencil"></i></a>
-                                                    <a href="javascript:void(0)" onclick="confirm_delete(<?= $row['user_id']; ?>,'user.php?page=delete&id=')" class="btn btn-default" ><i class="fa fa-trash-o"></i></a>
+                                                 
+                                                    <a href="javascript:void(0)" onclick="confirm_delete_history(<?= $row_history['transaction_detail_id']; ?>)" class="btn btn-default" ><i class="fa fa-trash-o"></i></a>
 
-                                                </td> -->
+                                                </td> 
                                             </tr>
                                             <?php
-											$no++;
+											$total = $total + $row_history['transaction_detail_total'];
+											$no_history++;
                                             }
                                             ?>
 
-                                           
                                           
                                         </tbody>
-                                          <tfoot>
-                                            <tr>
-                                                <td colspan="5"><a href="<?= $add_button ?>" class="btn btn-info " >Add</a></td>
-                                               
-                                            </tr>
-                                        </tfoot>
+                                         <tfoot>
+                                          <tr>
+                                            <td colspan="4" align="right" style="font-size:22px;"><strong>TOTAL</strong></td>
+                                              
+                                           <td style="font-size:22px;"><strong>
+                                           <?= tool_format_number($total)?>
+                                           </strong></td>
+                                              <td style="text-align:center;">
+
+                                             
+                                            </td> 
+                                           </tr>
+                                           
+                                         </tfoot>
+                                         
                                     </table>
 
                                 </div><!-- /.box-body -->

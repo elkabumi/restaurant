@@ -15,7 +15,7 @@
                             <img src="<?= $img ?>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="info" style="text-align:center;">
-                            <p style="color:#a0acbf; ">
+                            <p style="color:#fff; ">
                                         <?php
                                        
                                         echo "Welcome, ".$user_data[0];
@@ -66,14 +66,37 @@
                             </a>
                             
                   </li>
-                  
+
                    <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 5){ echo "class='active'"; } ?>>
-                            <a href="report_detail.php">
+                            <a href="purchase.php">
                                  <i class="fa fa-list-alt"></i>
-                                <span>laporan</span>
+                                <span>Pembelian</span>
                             </a>
                             
                   </li>
+
+                  <li class="treeview <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 6){ echo "active"; }?>">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i>
+                                <span>Laporan</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                              <?php
+                                if($_SESSION['user_type_id'] == 1 || $_SESSION['user_type_id'] == 2){
+                              ?>
+                                <li><a href="report_detail.php"><i class="fa fa-book"></i>Laporan Detail</a></li>
+                                <?php
+
+                              }
+                              ?> 
+                                <li><a href="report_harian.php"><i class="fa fa-book"></i>Laporan Harian</a></li>
+                                
+                             
+                            </ul>
+                  </li>
+                  
+                 
                              
                         
                     <?php

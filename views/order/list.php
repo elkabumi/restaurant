@@ -81,7 +81,7 @@ if(!$_SESSION['login']){
 
 
 
- <div class="footer_fixed"> 
+ <div class="header_fixed"> 
  
                     
                     
@@ -89,12 +89,12 @@ if(!$_SESSION['login']){
                    
 
 					<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-						<button type="button"  onClick="javascript: window.location.href = 'home.php'; ">BACK TO MENU</button>
+						<button class="blue_color_button"  type="button"  onClick="javascript: window.location.href = 'home.php'; ">BACK TO MENU</button>
 						
 					</div><!-- morph-button -->
 
 					<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-						<button type="button">LOGOUT</button>
+						<button class="red_color_button" type="button">LOGOUT</button>
 						<div class="morph-content">
 							<div>
 								<div class="content-style-form content-style-form-2" >
@@ -128,9 +128,10 @@ if(!$_SESSION['login']){
 		$get_item = get_item($row['table_id']);
 		
 	?>
+	<span class="tooltip tooltip-effect-1">
 	<div id="makeMeDraggable_<?= $row['table_id']?>" class="meja">
 	
-				<span class="tooltip tooltip-effect-1">
+				
 				<div class="tooltip-item"><?= $row['table_name'] ?>
 				<?php
                 if($get_item > 0 ){
@@ -152,8 +153,9 @@ if(!$_SESSION['login']){
 						?>
 					
 				</span>
-			</span> 
+			
 	 </div>
+	 </span> 
 	<?php
 	
 	}
@@ -165,9 +167,9 @@ if(!$_SESSION['login']){
 ?>
 
 
-
+<div class="footer_fixed"> 
 			<div class="morph-button morph-button-sidebar morph-button-fixed">
-			<button type="button" style="height:60px !important; width:auto !important; padding-left:20px; padding-right:20px;"><?= $building_name?></button>
+			<button type="button" class="green_color_button"><?= $building_name?></button>
 			<div class="morph-content">
 				<div>
 					<div class="content-style-sidebar">
@@ -189,7 +191,7 @@ if(!$_SESSION['login']){
 				</div>
 			</div>
 		</div><!-- morph-button -->
-        
+   </div>     
        
       
 		

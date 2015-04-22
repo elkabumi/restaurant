@@ -172,7 +172,7 @@ if(!$_SESSION['login']){
                                                  <td colspan="3">
                                                  <div class="form-group">
                                             <label>Bayar</label>
-                                            <input required type="number" name="i_payment" id="i_payment" class="form-control" value="0" style="text-align:right; font-size:30px; height:50px;" onChange="update_change()" />
+                                            <input required type="number" name="i_payment" id="i_payment" class="form-control" value="<?= ($total_price) ?>" style="text-align:right; font-size:30px; height:50px;" onChange="update_change()" />
                                         </div>
                                                    </td>
                                                

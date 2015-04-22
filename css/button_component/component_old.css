@@ -1,40 +1,10 @@
 /* Morph Button: Default Styles */
-.red_color_button{
-	background-color:#dd4b39 !important;
-	color:#fff !important;
-	border-radius:3px;
-}
-
-.blue_color_button{
-	background-color:#00c0ef !important;
-	color:#fff !important;
-	border-radius:3px;
-}
-.green_color_button{
-	border-radius:3px;
-	font-size:14px !important;
-	width:auto !important;
-	padding-left:20px !important;
-	padding-right:20px !important;
-}
-.header_fixed{
-	height:80px;
-	width:100%;
-	background:#fff;
-	position:fixed;
-	z-index:1000;
-	box-shadow:rgba(0, 0, 0, 0.0980392) 0 1px 3px;
-}
-
 .footer_fixed{
-	height:80px;
+	height:100px;
 	width:100%;
-	background:#fff;
-	z-index:1000;
-	margin-bottom:0;
-	bottom:0;
+	background:#27AE60;
 	position:fixed;
-	box-shadow:rgba(0, 0, 0, 0.0980392) 0 0px 3px;
+	z-index:1000;
 }
 
 .morph-button {
@@ -52,7 +22,7 @@
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 700;
-	line-height: 60px;
+	line-height: 80px;
 	overflow: hidden;
 }
 
@@ -71,8 +41,8 @@
 /* Common styles for overlay and modal type (fixed morph) */
 .morph-button-fixed,
 .morph-button-fixed .morph-content {
-	width: 180px;
-	
+	width: 300px;
+	height: 80px;
 }
 
 .morph-button-fixed > button {
@@ -82,8 +52,8 @@
 	-webkit-transition: opacity 0.1s 0.5s;
 	transition: opacity 0.1s 0.5s;
 	position:fixed;
-	width: 200px;
-	height: 60px;
+	width: 300px;
+	height: 80px;
 }
 
 .morph-button-fixed.open > button {
@@ -194,7 +164,7 @@
 	left: 50% !important;
 	margin: -210px 0 0 -300px;
 	width: 600px;
-	
+	height: 420px;
 	-webkit-transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
 	transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
 }
@@ -263,13 +233,13 @@
 .morph-button-modal-2.open .morph-content {
 	margin: -210px 0 0 -170px;
 	width: 340px;
-	
+	height: 420px;
 }
 
 .morph-button-modal-3.open .morph-content {
 	margin: -255px 0 0 -210px;
 	width: 420px;
-	padding-bottom:50px;
+	height:320px;
 }
 
 .morph-button-modal-3.open .morph-content > div {
@@ -378,8 +348,8 @@
 
 .morph-button-sidebar {
 	position: fixed;
-	bottom: 10px;
-	left: 20px;
+	bottom: 50px;
+	left: 50px;
 }
 
 .morph-button-sidebar > button {
@@ -400,7 +370,7 @@
 	height: 100%;
 	overflow: hidden;
 	-webkit-backface-visibility: hidden;
-	margin-top:80px;
+	margin-top:100px;
 	
 }
 
