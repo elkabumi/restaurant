@@ -113,6 +113,7 @@ if(!$_SESSION['login']){
 					</div><!-- morph-button -->
  </div>
  
+ <div class="border_meja"></div>
  
  
  <?php
