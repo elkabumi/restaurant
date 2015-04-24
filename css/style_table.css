@@ -27,9 +27,40 @@
 
 .border_meja{
 	width:1110px;
-	height:400px;
 	position:absolute;
-	margin-left:130px;
+	margin-left:100px;
 	margin-top:150px;
-	background: url(../img/border-meja.png) no-repeat !important;
+	border:4px #ecf0f5 dashed;
+	
+}
+
+.border_meja_edit{
+	
+	width:1110px;
+	position:absolute;
+	margin-left:100px;
+	margin-top:150px;
+	border:4px #27AE60 dashed;
+}
+
+
+.color_item{
+	height:80px;
+	margin-right:0px;
+	float:right;
+	width:200px;
+	text-transform:uppercase;
+	color:#666;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.jumlah_meja{
+	height:40px;
+	width:40px;
+	background:#81cfe0;
+	border-radius:2px;
+	line-height:40px;
+	color:#fff;
+	font-size:16px;
 }

@@ -64,6 +64,15 @@ function get_building_name($building_id){
 	return $result;
 }
 
+function get_building_img($building_id){
+	$query = mysql_query("select building_img as result from buildings where building_id = '$building_id'");
+	$row = mysql_fetch_array($query);
+	
+	$result = ($row['result']);
+	return $result;
+}
+
+
 function create_config($table, $data){
 	mysql_query("insert into $table values(".$data.")");
 }

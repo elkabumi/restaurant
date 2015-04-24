@@ -34,4 +34,13 @@ function update($data, $id){
 function delete($id){
 	mysql_query("delete from buildings where building_id = '$id'");
 }
+function get_img_old($id){
+	$query = mysql_query("select building_img
+			from buildings
+			where building_id = '$id'");
+	$result = mysql_fetch_array($query);
+	return $result['building_img'];
+}
+
+
 ?>

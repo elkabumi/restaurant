@@ -34,6 +34,9 @@ if(!$_SESSION['login']){
     
 		<script src="../js/button_component/modernizr.custom.js"></script>
 <style>
+.border_meja{
+	background:url(../img/building/<?= $building_img ?>) no-repeat;
+}
 <?php
 	$q_building1 = 1;
 	$q_building1 = mysql_query("select * from buildings where building_id = '$building_id' order by building_id");
@@ -113,7 +116,9 @@ if(!$_SESSION['login']){
 					</div><!-- morph-button -->
  </div>
  
- <div class="border_meja"></div>
+<div class="border_meja">
+  <img src="../img/building/<?= $building_img ?>" style="visibility:hidden;" />
+  </div>
  
  
  <?php
@@ -138,7 +143,7 @@ if(!$_SESSION['login']){
                 if($get_item > 0 ){
 				?>
               
-				<span class="count_item"><?= $get_item ?></span>
+				<div class="count_item"><?= $get_item ?></div>
                 <?php
 				}
 				?>
@@ -192,6 +197,10 @@ if(!$_SESSION['login']){
 				</div>
 			</div>
 		</div><!-- morph-button -->
+
+		<?php
+        include 'jumlah_meja.php';
+		?>
    </div>     
        
       

@@ -4,7 +4,7 @@ include '../lib/function.php';
 include '../models/building_model.php';
 $page = null;
 $page = (isset($_GET['page'])) ? $_GET['page'] : "list";
-$title = ucwords("Master Ruang");
+$title = ucwords("Ruang");
 
 $_SESSION['menu_active'] = 1;
 
@@ -36,6 +36,7 @@ switch ($page) {
 			$row = new stdClass();
 	
 			$row->building_name = false;
+			$row->building_img = false;
 			
 			$action = "building.php?page=save";
 		}
@@ -50,16 +51,27 @@ switch ($page) {
 
 		$i_name = get_isset($i_name);
 		
+		$path = "../img/building/";
+		$i_img_tmp = $_FILES['i_img']['tmp_name'];
+		$i_img = ($_FILES['i_img']['name']) ? $_FILES['i_img']['name'] : "";
+		$i_img = str_replace(" ","",$i_img);
+		
+		$date = ($_FILES['i_img']['name']) ? date("Ymdhms")."_" : "";
+		
 		$data = "'',
 					
-					'$i_name'
+					'$i_name',
+					'".$date.$i_img."'
 					
 			";
 			
 			//echo $data;
 
 			create($data);
-		
+			if($i_img){
+				move_uploaded_file($i_img_tmp, $path.$date.$i_img);
+			}
+			
 			header("Location: building.php?page=list&did=1");
 		
 		
@@ -72,10 +84,36 @@ switch ($page) {
 		$id = get_isset($_GET['id']);
 		$i_name = get_isset($i_name);
 		
-					$data = " building_name = '$i_name'
-					";
+		$path = "../img/building/";
+		$i_img_tmp = $_FILES['i_img']['tmp_name'];
+		$i_img = ($_FILES['i_img']['name']) ? $_FILES['i_img']['name'] : "";
+		$i_img = str_replace(" ","",$i_img);
+		
+		$date = ($_FILES['i_img']['name']) ? date("Ymdhms")."_" : "";
+		
+				if($i_img){
+				
 			
-			update($data, $id);
+				if(move_uploaded_file($i_img_tmp, $path.$date.$i_img)){
+					$get_img_old = get_img_old($id);
+					if($get_img_old){
+						unlink("../img/building/" .$get_img_old);
+					}
+					
+					$data = "building_name = '$i_name',
+							
+							building_img = '$date$i_img'
+
+					";
+				}
+			
+			
+			}else{
+				$data = "building_name = '$i_name'
+					";
+			}
+			
+		update($data, $id);
 			
 			header('Location: building.php?page=list&did=2');
 
@@ -86,6 +124,12 @@ switch ($page) {
 	case 'delete':
 
 		$id = get_isset($_GET['id']);	
+		
+		$get_img_old = get_img_old($id);
+					if($get_img_old){
+						unlink("../img/building/" . $get_img_old);
+					}
+
 
 		delete($id);
 

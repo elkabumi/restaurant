@@ -23,6 +23,8 @@ function save_table_location($id, $data_x, $data_y){
 		
 }
 
+
+
 function get_item($id){
 	$query = mysql_query("select count(menu_id) as jumlah from transactions_tmp a
 							join transaction_tmp_details b on b.transaction_id = a.transaction_id
@@ -53,6 +55,14 @@ function get_first_building_id(){
 
 function get_building_name($building_id){
 	$query = mysql_query("select building_name as result from buildings where building_id = '$building_id'");
+	$row = mysql_fetch_array($query);
+	
+	$result = ($row['result']);
+	return $result;
+}
+
+function get_building_img($building_id){
+	$query = mysql_query("select building_img as result from buildings where building_id = '$building_id'");
 	$row = mysql_fetch_array($query);
 	
 	$result = ($row['result']);
@@ -101,5 +111,14 @@ function cancel_order($table_id){
 		mysql_query("delete from transactions_tmp where table_id = '$table_id'");
 }
 
+function get_jumlah_meja($building_id){
+	$query = mysql_query("select count(a.table_id) as result  
+							from tables a
+							where a.building_id = '$building_id'");
+	$row = mysql_fetch_array($query);
+	
+	$result = ($row['result']);
+	return $result;
+}
 
 ?>

@@ -57,7 +57,7 @@
                                             <tr>
                                             <th width="5%">No</th>
                                                 <th>Nama Ruang</th>
-                                                
+                                                <th>Image</th>
                                                    <th>Config</th> 
                                             </tr>
                                         </thead>
@@ -69,6 +69,13 @@
                                             <tr>
                                             <td><?= $no?></td>
                                                <td><?= $row['building_name']?></td>
+                                                <td><img src="<?php
+											   if($row['building_img']){
+											   		$image = "../img/building/".$row['building_img'];
+											   }else{
+												   $image = "../img/img_not_found.png";
+											    }
+											    echo $image ?>" height="80" /></td>
                                                <td style="text-align:center;">
 
                                                     <a href="building.php?page=form&id=<?= $row['building_id']?>" class="btn btn-default" ><i class="fa fa-pencil"></i></a>
@@ -86,7 +93,7 @@
                                         </tbody>
                                           <tfoot>
                                             <tr>
-                                                <td colspan="10"><a href="<?= $add_button ?>" class="btn btn-info " >Add</a></td>
+                                                <td colspan="4"><a href="<?= $add_button ?>" class="btn btn-info " >Add</a></td>
                                                
                                             </tr>
                                         </tfoot>

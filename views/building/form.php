@@ -28,7 +28,19 @@
                                         </div>
                                       
                                     
-            
+            							 <div class="form-group">
+                                         <label>Gambar Denah </label>
+                                          <?php
+                                        if($id){
+											 $gambar = ($row->building_img) ? $row->building_img : "img_not_found.png";
+										?>
+                                        <br />
+                                        <img src="<?= "../img/building/".$gambar ?>" style="max-width:100%;"/>
+                                        <?php
+										}
+										?>
+                                           <input type="file" name="i_img" id="i_img" />
+                                        </div>
                                         
                                         
                                         </div>

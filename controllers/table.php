@@ -14,6 +14,7 @@ switch ($page) {
 		$first_building_id = get_first_building_id();
 		$building_id = (isset($_GET['building_id'])) ? $_GET['building_id'] : $first_building_id; 
 		$building_name = get_building_name($building_id);
+		$building_img = get_building_img($building_id);
 		//get_header2($title);
 		
 		//$query = select();
