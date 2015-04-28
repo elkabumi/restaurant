@@ -37,59 +37,39 @@ function CurrencyFormat(number)
 
 function add_menu(id)
 {
-	
-	var member_id = document.getElementById("i_member_id").value;
-	var table_id = document.getElementById("i_table_id").value;
-	
-	window.location.href = 'transaction_new.php?page=add_menu&member_id='+member_id+'&menu_id='+id+'&table_id'+table_id;
-	
+
+	if(id!=0){
+		var member_id = document.getElementById("i_member_id").value;
+		var table_id = document.getElementById("i_table_id").value;
+		
+		window.location.href = 'transaction_new.php?page=add_menu&member_id='+member_id+'&menu_id='+id+'&table_id='+table_id;
+	}
 	/*$("#MyTable").append('<tr valign="top"><th scope="row"><label for="customFieldName">Custom Field</label></th><td><input type="text" class="code" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp; <input type="text" class="code" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp; <a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
 */
 }
-
-function edit_menu(id)
-{
+<?php
+if($table_id!=""){
+while($row_item2 = mysql_fetch_array($query_item2)){
+?>
+function edit_qty_<?= $row_item2['tnt_id']?>(data){
 	
-	var jumlah = document.getElementById("i_jumlah_"+id).value;
-	
-	document.getElementById("i_jumlah_"+id).value = jumlah;
-	get_total_price();
-	// $("#table_treatment").load('treatment.php?page=form_add_treatment&planting_process_id='+id); 
+	var grand_price = document.getElementById("i_grand_price_<?=  $row_item2['tnt_id']; ?>").value;
+				
+	 			$.ajax({
+					type: "GET",
+					url: "transaction_new.php?page=edit_qty",
+					data:{id:<?= $row_item2['tnt_id']?>, qty:data, grand_price : grand_price}
+				}).done(function( result ) {
+				   //alert("Simpan berhasil");
+				});
+				
+				document.getElementById("i_total_<?= $row_item2['tnt_id']?>").value =  parseFloat(data) * parseFloat(grand_price);
 }
 
-function get_total_price(){
-	
-	var total_harga = 0;
-	<?php
-	while($row2 = mysql_fetch_array($query2)){
-	?>
-	var jumlah = document.getElementById("i_jumlah_"+<?= $row2['menu_id']?>).value; 
-	var harga = document.getElementById("i_harga_"+<?= $row2['menu_id']?>).value; 
-	
-	var total = jumlah * harga;
-	total_harga = total_harga + total;
-	<?php
-	}
-	?>
-	document.getElementById("i_total_harga").value = total_harga;
-	document.getElementById("i_total_harga_rupiah").value = CurrencyFormat(total_harga);
+<?php
 }
-
-function confirm_delete(id){
-	var a = confirm("Anda yakin ingin menghapus order ini ?");
-	var table_id = document.getElementById("i_table_id").value;
-	
-	if(a==true){
-		window.location.href = 'transaction.php?page=delete&table_id=' + table_id + '&id=' + id;
-	}
 }
-
-function load_data(id)
-{
-	//alert(id);
-	$("#table").load('transaction.php?page=list&table_id='+id); 
-}
-	
+?>
 	
 	/* 
  function addRow() {
@@ -178,7 +158,7 @@ $(document).ready(function(){
 																	");
                                         while($row_member = mysql_fetch_array($query_member)){
                                         ?>
-                                        <option value="<?= $row_member['member_id']?>"><?php
+                                        <option value="<?= $row_member['member_id']?>"<?php if($row_member['member_id'] == $member_id){ ?> selected="selected" <?php }?>><?php
 										
 										echo $row_member['member_name']; ?></option>
                                         <?php
@@ -228,21 +208,42 @@ $(document).ready(function(){
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                            <th width="5%">No</th>
-                                                <th width="35%">Nama Menu</th>
+                                            	<th width="5%">No</th>
+                                                <th width="20%">Nama Menu</th>
 												<th width="20%">Price</th>
                                                 <th width="20%">Discount</th>
                                                   <th width="10%">Qty</th>
-                                                  <th width="20%">Total Price</th>
+                                                  <th width="15%">Total Price</th>
                                                    <th width="10%">Config</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
                                         
-                                          <tr >
-                                         
-                                          </tr>
-                                          
+                                         <?php
+										 if($table_id!=""){
+                                           $no = 1;
+										   while($row_item = mysql_fetch_array($query_item)){
+                                            ?>
+                                            <tr>
+                                            	<td><?= $no?></td>
+                                               <td><?= $row_item['menu_name']?></td>
+                                               <td><?= $row_item['tnt_price']?></td>
+                                               <td><?= $row_item['tnt_discount']?></td>
+                                               <td>
+                                             <input name="i_qty_<?php echo $row_item['tnt_id']?>" type="text" id="i_qty_<?php echo $row_item['tnt_id']?>" value="<?php echo $row_item['tnt_qty']?>"  class="form-control" onchange="edit_qty_<?php echo $row_item['tnt_id']?>(this.value)" />
+                                               <input name="i_grand_price_<?php echo $row_item['tnt_id']?>" type="hidden" id="i_grand_price_<?php echo $row_item['tnt_id']?>"  value="<?php echo $row_item['tnt_grand_price']?>"  class="form-control"/>
+                                             </td>
+                                               <td><input name="i_total_<?php echo $row_item['tnt_id']?>" type="text" id="i_total_<?php echo $row_item['tnt_id']?>" value="<?php echo $row_item['tnt_total']?>" class="form-control"  readonly="readonly"/></td>
+                                               <td style="text-align:center;">
+                                                    <a href="javascript:void(0)" onclick="confirm_delete(<?= $row_item['tnt_id']; ?>,'transaction_new.php?page=delete_item&id=')" class="btn btn-default" ><i class="fa fa-trash-o"></i></a>
+
+                                                </td> 
+                                            </tr>
+                                            <?php
+											$no++;
+                                            }
+										 }
+											?>
                                           
 
                                           
@@ -250,7 +251,8 @@ $(document).ready(function(){
                                          <tfoot>
                                           <tr>
                                           <td></td>
-                                          <td>     <select name="i_menu_id" id="i_menu_id"  class="selectpicker show-tick form-control" data-live-search="true" onchange="javascript: add_menu(this.value)" >
+                                          <td>     <select name="i_menu_id" id="i_menu_id"  class="selectpicker show-tick form-control" data-live-search="true" onchange="add_menu(this.value)" >
+                                          <option value="0">Add menu</option>
                                         <?php
                                         $query_menu = mysql_query("select * from menus order by menu_id
 																	");
@@ -272,22 +274,27 @@ $(document).ready(function(){
                                               <td style="text-align:center;">
 
                                              
-                                            </td> 
+                                            </td>
+                                            <td></td> 
                                            </tr>
                                            
                                          </tfoot>
                                          
                                     </table>
-
                              
                             </div><!-- /.box -->
+                            
+                             <a href="transaction_new.php?page=save&member_id=<?= $member_id?>&table_id=<?= $table_id?>" class="btn btn-success" >SAVE</a>
+
                         </div>
+                        
+                        
                     </div>
             
             <!-- list menu -->
      
  
-   
+  
  
 </section><!-- /.content -->
 

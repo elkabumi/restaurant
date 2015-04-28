@@ -142,7 +142,7 @@ if(!$_SESSION['login']){
                                             <td><?= $no_item ?></td>
                                             <td valign="top"><?= $row_item['menu_name'] ?></td>
                                             <td align="right" valign="top"><?= $row_item['transaction_detail_qty'] ?></td>
-                                            <td align="right" valign="top"><?= number_format($row_item['transaction_detail_price']) ?></td>
+                                            <td align="right" valign="top"><?= number_format($row_item['transaction_detail_grand_price']) ?></td>
                                             <td align="right" valign="top"><?= number_format($row_item['transaction_detail_total']) ?></td>
                                             </tr>
                                             <?php

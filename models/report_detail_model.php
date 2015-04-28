@@ -2,7 +2,7 @@
 
 function select_detail($date1, $date2){
 						
-	$query = mysql_query("SELECT a.menu_id, a.menu_price, a.menu_name, b.jumlah
+	$query = mysql_query("SELECT a.menu_id , a.menu_price, a.menu_name, b.jumlah
 								FROM menus a
 								JOIN (
 								

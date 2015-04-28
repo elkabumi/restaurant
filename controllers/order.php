@@ -101,7 +101,7 @@ switch ($page) {
 									'".$row_detail['menu_id']."',
 									'".$row_detail['transaction_detail_original_price']."',
 									'".$row_detail['transaction_detail_margin_price']."',
-									'".$row_detail['transaction_detail_price']."',
+									'".$row_detail['transaction_detail_grand_price']."',
 									'".$row_detail['transaction_detail_qty']."',
 									'".$row_detail['transaction_detail_total']."'
 									";
