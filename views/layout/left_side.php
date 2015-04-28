@@ -38,7 +38,8 @@
                                 <li><a href="building.php?page=list"><i class="fa fa-home"></i>Room</a></li> 
                                 <li><a href="master_table.php?page=list"><i class="fa fa-cutlery"></i>Table</a></li>
                                 <li><a href="menu.php?page=list"><i class="fa fa-glass"></i>Menu</a></li>
-                               <li><a href="partner.php?page=list"><i class="fa fa-smile-o"></i>Partner</a></li>
+                                <li><a href="partner.php?page=list"><i class="fa fa-smile-o"></i>Partner</a></li>
+                                <li><a href="member.php?page=list"><i class="fa fa-user"></i>Member</a></li>
                              
                             </ul>
                   </li>

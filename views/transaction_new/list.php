@@ -38,9 +38,13 @@ function CurrencyFormat(number)
 function add_menu(id)
 {
 	
+	var member_id = document.getElementById("i_member_id").value;
+	var table_id = document.getElementById("i_table_id").value;
 	
-	$("#MyTable").append('<tr valign="top"><th scope="row"><label for="customFieldName">Custom Field</label></th><td><input type="text" class="code" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp; <input type="text" class="code" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp; <a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
-
+	window.location.href = 'transaction_new.php?page=add_menu&member_id='+member_id+'&menu_id='+id+'&table_id'+table_id;
+	
+	/*$("#MyTable").append('<tr valign="top"><th scope="row"><label for="customFieldName">Custom Field</label></th><td><input type="text" class="code" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp; <input type="text" class="code" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp; <a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
+*/
 }
 
 function edit_menu(id)
@@ -149,7 +153,7 @@ $(document).ready(function(){
             
             
             
-            <div class="col-xs-6">
+            <div class="col-xs-4">
             <div class="form-group">
              <label>Tanggal </label>
              <div class="input-group">
@@ -162,7 +166,29 @@ $(document).ready(function(){
             </div>
             </div>
             
-             <div class="col-xs-6">
+             <div class="col-xs-4">
+             <div class="form-group">
+                                         <label>Member </label>
+                                        <select name="i_member_id" id="i_member_id"  class="selectpicker show-tick form-control" data-live-search="true" onChange="load_data(this.value)" >
+                                        <option value="0">Non Member</option>
+                                        <?php
+                                        $query_member = mysql_query("select a.*
+																	from members a																
+																	order by member_id
+																	");
+                                        while($row_member = mysql_fetch_array($query_member)){
+                                        ?>
+                                        <option value="<?= $row_member['member_id']?>"><?php
+										
+										echo $row_member['member_name']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                        </select>
+                                      	</div>
+            </div>  
+            
+             <div class="col-xs-4">
              <div class="form-group">
                                          <label>Meja </label>
                                         <select name="i_table_id" id="i_table_id"  class="selectpicker show-tick form-control" data-live-search="true" onChange="load_data(this.value)" >
@@ -199,12 +225,13 @@ $(document).ready(function(){
                             <div class="box">
                              
                                
-                                    <table id="MyTable" class="table table-bordered table-striped">
+                                    <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                             <th width="5%">No</th>
                                                 <th width="35%">Nama Menu</th>
 												<th width="20%">Price</th>
+                                                <th width="20%">Discount</th>
                                                   <th width="10%">Qty</th>
                                                   <th width="20%">Total Price</th>
                                                    <th width="10%">Config</th> 
@@ -259,15 +286,7 @@ $(document).ready(function(){
             
             <!-- list menu -->
      
-    <br />
-   
-    <br />
-    <div onclick="addRow()" style="color: Blue; text-decoration: underline;">
-        Add row to table
-    </div>
-    
-   
-    
+ 
    
  
 </section><!-- /.content -->

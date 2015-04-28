@@ -74,6 +74,25 @@ function check_history($table_id, $menu_id){
 	return $jumlah;
 }
 
+function get_menu_price($menu_id){
+	$query = mysql_query("select menu_price from menus where menu_id = '$menu_id'
+							  ");
+	$row = mysql_fetch_array($query);
+	
+	$jumlah = $row['menu_price'];
+	return $jumlah;
+}
+
+function get_discount($member_id){
+	$query = mysql_query("select member_discount from members where member_id = '$member_id'
+							  ");
+	$row = mysql_fetch_array($query);
+	
+	$jumlah = $row['member_discount'];
+	return $jumlah;
+}
+
+
 function get_data_history($table_id, $menu_id){
 	$query = mysql_query("select b.*
 							  from transactions_tmp a

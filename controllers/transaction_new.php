@@ -39,6 +39,33 @@ switch ($page) {
 		get_footer($query_find);
 	break;
 	
+	case 'add_menu';
+		$member_id = get_isset($_GET['member_id']);	
+		$menu_id = get_isset($_GET['menu_id']);	
+		$table_id = get_isset($_GET['table_id']);	
+		$get_menu_price = get_menu_price($menu_id);
+		$get_discount = get_discount($member_id);
+		$tnt_discount = $get_discount / 100 * $get_menu_price;
+		$tnt_grand_price = $get_menu_price - $tnt_discount;
+		
+		$data = "'',
+					'".$_SESSION['user_id']."',
+					'$member_id', 
+					'$menu_id',
+					'$get_menu_price',
+					'$tnt_discount',
+					'$tnt_grand_price',
+					'1',
+					'$tnt_grand_price'
+					
+					
+					
+			";
+			
+			create_config("transaction_new_tmp", $data);
+			header("Location: transaction_new.php?page=list&table_id=$table_id&member_id=$member_id");
+			
+	break;
 	
 
 	case 'save':

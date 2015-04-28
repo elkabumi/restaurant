@@ -23,7 +23,7 @@
                                         <div class="col-md-12">
                                         
                                         <div class="form-group">
-                                            <label>Nama Ruang</label>
+                                            <label>Nama </label>
                                             <input required type="text" name="i_name" class="form-control" placeholder="Masukkan nama partner..." value="<?= $row->partner_name ?>"/>
                                         </div>
                                       
