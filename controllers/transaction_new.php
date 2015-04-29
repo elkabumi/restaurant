@@ -51,15 +51,17 @@ switch ($page) {
 	
 	case 'list_edit':
 		get_header($title);
-				
-		$query_item = select_item_edit();
-		$query_item2 = select_item_edit();
-		$query_item3 = select_item_edit();
-		
 		
 		if(isset($_GET['table_id'])){
 			$table_id = $_GET['table_id'];
 		}
+				
+		$query_item = select_item_edit($table_id );
+		$query_item2 = select_item_edit($table_id );
+		$query_item3 = select_item_edit($table_id );
+		
+		
+		
 		
 		$row_edit = read_id($table_id);
 		

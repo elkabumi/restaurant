@@ -26,10 +26,12 @@ function select_item(){
 	return $query;
 }
 
-function select_item_edit(){
+function select_item_edit($table_id ){
 	 $query = mysql_query("select a.*, c.menu_name 
 							  from transaction_tmp_details a
+							  join transactions_tmp b on b.transaction_id = a.transaction_id
 							  join menus c on c.menu_id = a.menu_id
+							  where b.table_id = '$table_id'
 							  order by transaction_detail_id 
 							  ");
 	return $query;
@@ -54,7 +56,7 @@ function delete_history($id){
 }
 
 function delete($table_id){
-	mysql_query("delete from transaction_new_tmp  where table_id = '$table_id'");
+	mysql_query("delete from transaction_new_tmp");
 }
 
 function check_table($table_id){
