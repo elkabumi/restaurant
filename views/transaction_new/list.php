@@ -250,9 +250,9 @@ function edit_qty_<?= $row_item2['tnt_id']?>(data){
                                         <thead>
                                             <tr>
                                             	<th width="5%">No</th>
-                                                <th width="20%">Nama Menu</th>
-												<th width="20%">Price</th>
-                                                <th width="20%">Discount</th>
+                                                <th width="30%">Nama Menu</th>
+												<th width="15%">Price</th>
+                                                <th width="15%">Discount</th>
                                                   <th width="10%">Qty</th>
                                                   <th width="15%">Total Price</th>
                                                    <th width="10%">Config</th> 
