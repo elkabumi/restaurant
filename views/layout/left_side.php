@@ -60,6 +60,14 @@
                             
                   </li>
                   
+                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 8){ echo "class='active'"; } ?>>
+                            <a href="transaction_new.php">
+                                 <i class="fa fa-pencil-square-o"></i>
+                                <span>Transaksi Baru</span>
+                            </a>
+                            
+                  </li>
+                  
                   <li <?php if(isset($_SESSION['menu_active']) && $_SESSION['menu_active'] == 4){ echo "class='active'"; } ?>>
                             <a href="table.php">
                                  <i class="fa fa-asterisk"></i>

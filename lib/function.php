@@ -68,6 +68,20 @@ function format_date($date){
 	}
 
 }
+
+function format_date_only($date){
+	if($date == "0000-00-00"){
+		return "-";
+	}else{
+		$date = explode(" ", $date);
+		$date = $date[0]; 
+		$date = explode("-", $date);
+		$new_date = $date[2]."/".$date[1]."/".$date[0];
+	
+		return $new_date;
+	}
+
+}
 function get_hour($data){
 	$data = explode(" ", $data);
 	$hour = $data[1];

@@ -42,7 +42,7 @@ function add_menu(id)
 		var member_id = document.getElementById("i_member_id").value;
 		var table_id = document.getElementById("i_table_id").value;
 		
-		window.location.href = 'transaction_new.php?page=add_menu&member_id='+member_id+'&menu_id='+id+'&table_id='+table_id;
+		window.location.href = 'transaction_new.php?page=add_menu_edit&member_id='+member_id+'&menu_id='+id+'&table_id='+table_id;
 	}
 	/*$("#MyTable").append('<tr valign="top"><th scope="row"><label for="customFieldName">Custom Field</label></th><td><input type="text" class="code" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp; <input type="text" class="code" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp; <a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
 */
@@ -50,27 +50,27 @@ function add_menu(id)
 <?php
 while($row_item2 = mysql_fetch_array($query_item2)){
 ?>
-function edit_qty_<?= $row_item2['tnt_id']?>(data){
+function edit_qty_<?= $row_item2['transaction_detail_id']?>(data){
 	
 	if(data > 0){
-				var grand_price = document.getElementById("i_grand_price_<?=  $row_item2['tnt_id']; ?>").value;
+				var grand_price = document.getElementById("i_grand_price_<?=  $row_item2['transaction_detail_id']; ?>").value;
 				
 	 			$.ajax({
 					type: "GET",
-					url: "transaction_new.php?page=edit_qty",
-					data:{id:<?= $row_item2['tnt_id']?>, qty:data, grand_price : grand_price}
+					url: "transaction_new.php?page=edit_qty_edit",
+					data:{id:<?= $row_item2['transaction_detail_id']?>, qty:data, grand_price : grand_price}
 				}).done(function( result ) {
 				   //alert("Simpan berhasil");
 				});
 				
-				document.getElementById("i_total_<?= $row_item2['tnt_id']?>").value =  parseFloat(data) * parseFloat(grand_price);
+				document.getElementById("i_total_<?= $row_item2['transaction_detail_id']?>").value =  parseFloat(data) * parseFloat(grand_price);
 				
 				total = get_total();
 				document.getElementById("i_total_transaction").value = CurrencyFormat(total);
 				document.getElementById("i_total_transaction_real").value = total;
 	}else{
 		alert("Qty tidak boleh kurang dari 0");
-		document.getElementById("i_total_<?= $row_item2['tnt_id']?>").value =  0;
+		document.getElementById("i_total_<?= $row_item2['transaction_detail_id']?>").value =  0;
 		total = get_total();
 		document.getElementById("i_total_transaction").value = CurrencyFormat(total);
 		document.getElementById("i_total_transaction_real").value = total;
@@ -92,7 +92,7 @@ function edit_qty_<?= $row_item2['tnt_id']?>(data){
 
 		
 		
-		total = parseFloat(total) + parseFloat(document.getElementById("i_total_<?=  $row_item3['tnt_id']; ?>").value);
+		total = parseFloat(total) + parseFloat(document.getElementById("i_total_<?=  $row_item3['transaction_detail_id']; ?>").value);
 		
 		
 		
@@ -116,7 +116,7 @@ function edit_qty_<?= $row_item2['tnt_id']?>(data){
 			var member_id = document.getElementById("i_member_id").value;
 			var i_date = document.getElementById("date_picker1").value;
 			
-			window.location.href = 'transaction_new.php?page=save&member_id='+member_id+'&table_id='+table_id+'&date='+i_date;
+			window.location.href = 'transaction_new.php?page=save_edit&member_id='+member_id+'&table_id='+table_id+'&date='+i_date;
 			
 		}else{
 			alert("Simpan gagal. Order menu masih kosong");
@@ -269,21 +269,21 @@ function edit_qty_<?= $row_item2['tnt_id']?>(data){
                                             <tr>
                                             	<td><?= $no?></td>
                                                <td><?= $row_item['menu_name']?></td>
-                                               <td><?= $row_item['tnt_price']?></td>
-                                               <td><?= $row_item['tnt_discount']?></td>
+                                               <td><?= $row_item['transaction_detail_price']?></td>
+                                               <td><?= $row_item['transaction_detail_price_discount']?></td>
                                                <td>
-                                             <input name="i_qty_<?php echo $row_item['tnt_id']?>" type="text" id="i_qty_<?php echo $row_item['tnt_id']?>" value="<?php echo $row_item['tnt_qty']?>"  class="form-control" onchange="edit_qty_<?php echo $row_item['tnt_id']?>(this.value)" />
-                                               <input name="i_grand_price_<?php echo $row_item['tnt_id']?>" type="hidden" id="i_grand_price_<?php echo $row_item['tnt_id']?>"  value="<?php echo $row_item['tnt_grand_price']?>"  class="form-control"/>
+                                             <input name="i_qty_<?php echo $row_item['transaction_detail_id']?>" type="text" id="i_qty_<?php echo $row_item['transaction_detail_id']?>" value="<?php echo $row_item['transaction_detail_qty']?>"  class="form-control" onchange="edit_qty_<?php echo $row_item['transaction_detail_id']?>(this.value)" />
+                                               <input name="i_grand_price_<?php echo $row_item['transaction_detail_id']?>" type="hidden" id="i_grand_price_<?php echo $row_item['transaction_detail_id']?>"  value="<?php echo $row_item['transaction_detail_grand_price']?>"  class="form-control"/>
                                              </td>
-                                               <td><input name="i_total_<?php echo $row_item['tnt_id']?>" type="text" id="i_total_<?php echo $row_item['tnt_id']?>" value="<?php echo $row_item['tnt_total']?>" class="form-control"  readonly="readonly"/></td>
+                                               <td><input name="i_total_<?php echo $row_item['transaction_detail_id']?>" type="text" id="i_total_<?php echo $row_item['transaction_detail_id']?>" value="<?php echo $row_item['transaction_detail_total']?>" class="form-control"  readonly="readonly"/></td>
                                                <td style="text-align:center;">
-                                                    <a href="javascript:void(0)" onclick="confirm_delete(<?= $row_item['tnt_id']; ?>,'transaction_new.php?page=delete_item&id=')" class="btn btn-default" ><i class="fa fa-trash-o"></i></a>
+                                                    <a href="javascript:void(0)" onclick="confirm_delete(<?= $row_item['transaction_detail_id']; ?>,'transaction_new.php?page=delete_item_edit&table_id=<?= $_GET['table_id'] ?>&id=')" class="btn btn-default" ><i class="fa fa-trash-o"></i></a>
 
                                                 </td> 
                                             </tr>
                                             <?php
 											$no++;
-											$total = $total + $row_item['tnt_total'];
+											$total = $total + $row_item['transaction_detail_total'];
                                             }
 										// }
 											?>

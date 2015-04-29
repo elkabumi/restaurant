@@ -70,6 +70,9 @@ switch ($page) {
 		$building_id = $_GET['building_id'];
 		
 		$data_total = get_data_total($table_id);
+		$total_discount = get_total_discount($table_id);
+		
+		echo $total_discount;
 		
 		
 		if($i_payment < $data_total){
@@ -80,9 +83,23 @@ switch ($page) {
 								from transactions_tmp a
 								where a.table_id = '$table_id'
 								");
+								
+		
+		
+		// simpan transaksi
 		while($row = mysql_fetch_array($query)){
+			
+			// create settlement
+			
+			$get_discount_type = get_discount_type($row['member_id']);
+			
+			if($total_discount > 0 && $get_discount_type == 2){
+				update_settlement($total_discount, $row['member_id']);
+			}
+			
 			$data = "'',
 					'$table_id',
+					'".$row['member_id']."',
 					'".$row['transaction_date']."', 
 					'".$data_total."',
 					'".$i_payment."',
@@ -91,16 +108,22 @@ switch ($page) {
 			create_config("transactions", $data);
 			$transaction_id = mysql_insert_id();
 			
+			
+			
 			$query_detail =  mysql_query("select * 
 								from transaction_tmp_details a
 								where a.transaction_id = '".$row['transaction_id']."'
 								");
 			while($row_detail = mysql_fetch_array($query_detail)){
+				
+				// simpan transaksi detail
 				$data_detail = "'',
 									'$transaction_id',
 									'".$row_detail['menu_id']."',
 									'".$row_detail['transaction_detail_original_price']."',
 									'".$row_detail['transaction_detail_margin_price']."',
+									'".$row_detail['transaction_detail_price']."',
+									'".$row_detail['transaction_detail_price_discount']."',
 									'".$row_detail['transaction_detail_grand_price']."',
 									'".$row_detail['transaction_detail_qty']."',
 									'".$row_detail['transaction_detail_total']."'

@@ -23,7 +23,7 @@
     <td align="center" valign="top"><?= $no_item ?></td>
     <td valign="top"><?= $row_item['menu_name'] ?></td>
     <td align="right" valign="top"><?= $row_item['transaction_detail_qty'] ?></td>
-    <td align="right" valign="top"><?= $row_item['transaction_detail_price'] ?></td>
+    <td align="right" valign="top"><?= $row_item['transaction_detail_grand_price'] ?></td>
     <td align="right" valign="top"><?= $row_item['transaction_detail_total'] ?></td>
   </tr>
   
@@ -41,7 +41,7 @@
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="25%"><a href="transaction.php?table_id=<?= $row['table_id']?>" style="text-decoration:none;"><div class="btn_edit_item">EDIT </div></a></td>
+    <td width="25%"><a href="transaction_new.php?page=list_edit&table_id=<?= $row['table_id']?>" style="text-decoration:none;"><div class="btn_edit_item">EDIT </div></a></td>
     <td width="25%">
     <a href="payment.php?table_id=<?= $row['table_id']?>&building_id=<?= $building_id?>" style="text-decoration:none;"><div class="btn_payment">BAYAR</div></a>
       

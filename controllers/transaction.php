@@ -63,9 +63,9 @@ switch ($page) {
 			}else{
 			$data = "'',
 					'$i_table_id',
-					'$tanggal', 
-					'$i_total_harga'
-			";
+					'0',
+					'$tanggal'
+						";
 			
 			create_config("transactions_tmp", $data);
 				$transaction_id = mysql_insert_id();
@@ -100,6 +100,8 @@ switch ($page) {
 									'".$row['menu_id']."',
 									'".$row['menu_original_price']."',
 									'".$row['menu_margin_price']."',
+									'".$row['menu_price']."',
+									'0',
 									'".$row['menu_price']."',
 									'$jumlah',
 									'$total'

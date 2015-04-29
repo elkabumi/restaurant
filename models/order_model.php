@@ -98,6 +98,16 @@ function get_data_total($table_id){
 	return $row['total'];				 
 }
 
+function get_total_discount($table_id){
+	 $query = mysql_query("select sum(transaction_detail_price_discount) as total
+							  from transactions_tmp a
+							  join transaction_tmp_details b on b.transaction_id = a.transaction_id
+							  where table_id = '".$table_id."'");
+	$row = mysql_fetch_array($query);
+	
+	return $row['total'];				 
+}
+
 function cancel_order($table_id){
 		$query =  mysql_query("select * 
 								from transactions_tmp a
@@ -119,6 +129,20 @@ function get_jumlah_meja($building_id){
 	
 	$result = ($row['result']);
 	return $result;
+}
+
+
+function get_discount_type($member_id){
+	$query = mysql_query("select member_discount_type from members where member_id = '$member_id'");
+	$row = mysql_fetch_array($query);
+	
+	$result = ($row['member_discount_type']);
+	return $result;
+}
+
+
+function update_settlement($data, $member_id){
+	mysql_query("update members set member_settlement = member_settlement + '$data' where member_id = '$member_id'");
 }
 
 ?>

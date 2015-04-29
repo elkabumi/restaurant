@@ -10,12 +10,27 @@ function select_cat(){
 	return $query;
 }
 
-function select_item($table_id){
+function read_id($table_id){
+	$query = mysql_query("select * from transactions_tmp where table_id = '$table_id'");
+	$row = mysql_fetch_array($query);
+	return $row;
+}
+
+function select_item(){
 	 $query = mysql_query("select a.*, c.menu_name 
 							  from transaction_new_tmp a
 							  join menus c on c.menu_id = a.menu_id
-							  where table_id = '".$table_id."'
+							  where user_id = '".$_SESSION['user_id']."'
 							  order by tnt_id 
+							  ");
+	return $query;
+}
+
+function select_item_edit(){
+	 $query = mysql_query("select a.*, c.menu_name 
+							  from transaction_tmp_details a
+							  join menus c on c.menu_id = a.menu_id
+							  order by transaction_detail_id 
 							  ");
 	return $query;
 }
@@ -39,7 +54,7 @@ function delete_history($id){
 }
 
 function delete($table_id){
-	mysql_query("delete from transaction_new_tmp  where table_id = '$id'");
+	mysql_query("delete from transaction_new_tmp  where table_id = '$table_id'");
 }
 
 function check_table($table_id){
@@ -78,13 +93,14 @@ function check_history($table_id, $menu_id){
 }
 
 function get_menu_price($menu_id){
-	$query = mysql_query("select menu_price from menus where menu_id = '$menu_id'
+	$query = mysql_query("select * from menus where menu_id = '$menu_id'
 							  ");
 	$row = mysql_fetch_array($query);
 	
-	$jumlah = $row['menu_price'];
-	return $jumlah;
+	return $row;
 }
+
+
 
 function get_discount($member_id, $menu_id){
 	$query = mysql_query("select a.member_discount 
@@ -155,6 +171,13 @@ function delete_item($id){
 	
 }
 
+function delete_item_edit($id){
+	
+	
+	mysql_query("delete from transaction_tmp_details where transaction_detail_id = '$id'");
+	
+}
+
 
 function get_data_menu($menu_id){
 	$query = mysql_query("select * from menus where menu_id = '$menu_id'
@@ -171,6 +194,15 @@ function get_building_id($table_id){
 	$row = mysql_fetch_array($query);
 	
 	$result = $row['building_id'];
+	return $result;
+}
+
+function get_transaction_id($table_id){
+	$query = mysql_query("select transaction_id from transactions_tmp where table_id = '$table_id'
+							  ");
+	$row = mysql_fetch_array($query);
+	
+	$result = $row['transaction_id'];
 	return $result;
 }
 
