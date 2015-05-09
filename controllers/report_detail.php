@@ -67,7 +67,7 @@ switch ($page) {
 			$menu_terlaris = get_menu_terlaris($date1, $date2);
 			
             include '../views/report_detail/form_result.php'; 
-			//include '../views/report_detail/list_item.php';
+			include '../views/report_detail/list_item.php';
 			include '../views/report_detail/list_partner.php';
 			include '../views/report_detail/list_transaction.php';
 		}
