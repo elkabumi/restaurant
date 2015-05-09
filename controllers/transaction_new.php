@@ -51,11 +51,21 @@ switch ($page) {
 	
 	case 'list_edit':
 		get_header($title);
+<<<<<<< HEAD
 				
+=======
+>>>>>>> 16412c48a8952210ee50d31064fa0f2cab667eba
 		
 		if(isset($_GET['table_id'])){
 			$table_id = $_GET['table_id'];
 		}
+				
+		$query_item = select_item_edit($table_id );
+		$query_item2 = select_item_edit($table_id );
+		$query_item3 = select_item_edit($table_id );
+		
+		
+		
 		
 		$query_item = select_item_edit($table_id);
 		$query_item2 = select_item_edit($table_id);
