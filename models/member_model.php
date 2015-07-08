@@ -8,6 +8,21 @@ function select(){
 	return $query;
 }
 
+function select_partner(){
+	$query = mysql_query("select a.* 
+							from partners a	
+							order by partner_id");
+	return $query;
+}
+
+function select_menu($partner_id){
+	$query = mysql_query("select a.* 
+							from menus a	
+							where partner_id = '$partner_id'
+							order by menu_id");
+	return $query;
+}
+
 function select_item($id){
 	$query = mysql_query("select a.*, b.menu_name
 							from member_items a
@@ -51,4 +66,21 @@ function delete($id){
 function delete_item($id){
 	mysql_query("delete from member_items where member_item_id = '$id'");
 }
+
+function delete_member_item($member_id, $menu_id){
+	mysql_query("delete from member_items where member_id = '$member_id' and menu_id = '$menu_id'");
+}
+
+function check_exist($member_id, $menu_id){
+	$query = mysql_query("select count(member_item_id) as jumlah
+							  from member_items
+							  where member_id = '".$member_id."' and menu_id = '".$menu_id."'
+							  ");
+	$row = mysql_fetch_array($query);
+	
+	$jumlah = $row['jumlah'];
+	return $jumlah;
+}
+
+
 ?>
