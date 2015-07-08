@@ -163,7 +163,7 @@ function load_data_history(id)
             
              <div class="col-xs-6">
              <div class="form-group">
-                                         <label>Meja </label>
+                                        <label>Meja </label>
                                         <select name="i_table_id" id="i_table_id"  class="selectpicker show-tick form-control" data-live-search="true" onChange="load_data_history(this.value)" >
                                         <?php
                                         $query_table = mysql_query("select a.*, b.building_name

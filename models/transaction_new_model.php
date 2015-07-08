@@ -27,7 +27,7 @@ function select_item(){
 }
 
 
-function select_item_edit($table_id ){
+function select_item_edit($table_id){
 
 	 $query = mysql_query("select a.*, c.menu_name 
 							  from transaction_tmp_details a

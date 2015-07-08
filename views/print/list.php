@@ -117,7 +117,7 @@ Jl. Taman Gayungsari Timur No.7 Surabaya<br />
 <br />
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td align="center">TERIMA KASIH <br />ATAS<br /> KUNJUNGAN ANDA</td>
+    <td align="center">TERIMA KASIH ATAS<br /> KUNJUNGAN ANDA<br>" <?php echo strtoupper($row['member_name']) ?> "</td>
   </tr>
 </table>
 <a href="order.php" style="text-decoration:none"><div class="back_to_order"></div></a>

@@ -32,6 +32,7 @@ switch ($page) {
 
 
 			$row = read_id($id);
+			$query_partner = select_partner();
 		
 			$action = "member.php?page=edit&id=$id";
 		} else{
@@ -120,9 +121,40 @@ switch ($page) {
 							member_discount_type = '$i_discount_type'
 							";
 			
-			update($data, $id);
+			//update($data, $id);
+
+			$query_partner = select_partner();
+			while($row_partner = mysql_fetch_array($query_partner)){
+				$query_menu = mysql_query("select a.*, b.menu_type_name
+                                                from menus a    
+                                                join menu_types b on b.menu_type_id = a.menu_type_id
+                                                where partner_id = '".$row_partner['partner_id']."'
+                                                order by menu_id");
+                while($row_menu = mysql_fetch_array($query_menu)){
+                	
+                	$i_check = (isset($_POST['i_check_'.$row_menu['menu_id']])) ? $_POST['i_check_'.$row_menu['menu_id']] : "";
+                	if($i_check == 1){
+	                	$check_exist = check_exist($id, $row_menu['menu_id']);
+
+	                	if($check_exist == 0){
+
+	                		$data = "'',
+									'$id',
+									'".$row_menu['menu_id']."'
+							";
+
+	                		create_item($data);
+	                	}
+
+					}else{
+						delete_member_item($id, $row_menu['menu_id']);
+					}
+
+				}
+			}
 			
-			header('Location: member.php?page=list&did=2');
+			
+			header("Location: member.php?page=form&id=$id&did=1");
 
 		
 

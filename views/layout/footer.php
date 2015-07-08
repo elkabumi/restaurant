@@ -19,16 +19,15 @@
         <script type="text/javascript">
             $(function() {
                 $("#example1").dataTable();
-                $('#example2').dataTable({
-                    "bPaginate": true,
-                    "bLengthChange": false,
-                    "bFilter": false,
-                    "bSort": true,
-                    "bInfo": true,
-                    "bAutoWidth": false
-                });
+                $('#example2').dataTable();
 				$("#example3").dataTable();
 				$("#example4").dataTable();
+                $("#example5").dataTable();
+                $("#example6").dataTable();
+                $("#example7").dataTable();
+                $("#example8").dataTable();
+                $("#example9").dataTable();
+                $("#example10").dataTable();
  				$('#example_simple').dataTable({
                     "bPaginate": false,
                     "bLengthChange": false,
