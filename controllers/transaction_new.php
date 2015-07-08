@@ -51,7 +51,6 @@ switch ($page) {
 	
 	case 'list_edit':
 		get_header($title);
-
 		
 		if(isset($_GET['table_id'])){
 			$table_id = $_GET['table_id'];
