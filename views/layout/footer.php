@@ -46,6 +46,11 @@
                     "bFilter": false,
                    
                 });
+
+                $("#example_nopagination1").dataTable(
+                    "bPaginate": false,
+                });
+              
 				/*
 				$(function() {
 				  $('#new_table').footable();

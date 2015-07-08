@@ -121,7 +121,7 @@ switch ($page) {
 							member_discount_type = '$i_discount_type'
 							";
 			
-			//update($data, $id);
+			update($data, $id);
 
 			$query_partner = select_partner();
 			while($row_partner = mysql_fetch_array($query_partner)){
@@ -133,7 +133,9 @@ switch ($page) {
                 while($row_menu = mysql_fetch_array($query_menu)){
                 	
                 	$i_check = (isset($_POST['i_check_'.$row_menu['menu_id']])) ? $_POST['i_check_'.$row_menu['menu_id']] : "";
-                	if($i_check == 1){
+                
+                	
+                	if($i_check){
 	                	$check_exist = check_exist($id, $row_menu['menu_id']);
 
 	                	if($check_exist == 0){
@@ -147,8 +149,10 @@ switch ($page) {
 	                	}
 
 					}else{
+						
 						delete_member_item($id, $row_menu['menu_id']);
 					}
+					
 
 				}
 			}

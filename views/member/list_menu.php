@@ -17,7 +17,7 @@
                             <div class="box">
                              
                                 <div class="box-body2 table-responsive">
-                                    <table id="example<?= $example ?>" class="table table-bordered table-striped">
+                                    <table id="example_nopagination1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                             <th width="5%">No</th>
