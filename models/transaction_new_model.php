@@ -26,11 +26,9 @@ function select_item(){
 	return $query;
 }
 
-<<<<<<< HEAD
-function select_item_edit($table_id){
-=======
+
 function select_item_edit($table_id ){
->>>>>>> 16412c48a8952210ee50d31064fa0f2cab667eba
+
 	 $query = mysql_query("select a.*, c.menu_name 
 							  from transaction_tmp_details a
 							  join transactions_tmp b on b.transaction_id = a.transaction_id

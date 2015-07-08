@@ -23,7 +23,7 @@ body{
 	padding:10px;
 }
 table{
-	font-size:10px;
+	font-size:12px;
 	
 }
 .header{

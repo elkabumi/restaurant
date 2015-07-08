@@ -21,7 +21,7 @@ for($i=0; $i<=3; $i++){
 
                               }else{
                                ?>
-                                    <span style="font-size:36px; font-weight:bold;">
+                                    <span style="font-size:24px; font-weight:bold;">
                                       <?php
                                     }
                                       ?>
