@@ -28,6 +28,7 @@
                 $("#example8").dataTable();
                 $("#example9").dataTable();
                 $("#example10").dataTable();
+
  				$('#example_simple').dataTable({
                     "bPaginate": false,
                     "bLengthChange": false,
@@ -37,7 +38,7 @@
                     "bAutoWidth": false
                 });
 				
-				  $('#example_no_order_by').dataTable({            
+				$('#example_no_order_by').dataTable({            
                     "bSort": false
                 });
 				
@@ -47,8 +48,9 @@
                    
                 });
 
-                $("#example_nopagination1").dataTable(
+                $("#example_nopagination1").dataTable({
                     "bPaginate": false,
+                    "bFilter": false
                 });
               
 				/*
