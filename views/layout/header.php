@@ -39,6 +39,8 @@ if(!$_SESSION['login']){
 	   <link rel="stylesheet" type="text/css" href="../css/button/component.css" />
        <!-- tooptip meja -->
        <link rel="stylesheet" type="text/css" href="../css/tooltip/tooltip-classic.css" />
+       <!-- menu food -->
+       <link href="../css/menu/menu.css" rel="stylesheet">
       
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

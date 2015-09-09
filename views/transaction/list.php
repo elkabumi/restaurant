@@ -54,6 +54,24 @@ function add_menu(id)
 	// $("#table_treatment").load('treatment.php?page=form_add_treatment&planting_process_id='+id); 
 }
 
+function minus_menu(id)
+{
+	
+	var jumlah = document.getElementById("i_jumlah_"+id).value;
+	
+	jumlah--;
+	
+	if(jumlah > 0){
+		jumlah = jumlah;
+	}else{
+		jumlah = 0;
+	}
+	
+	document.getElementById("i_jumlah_"+id).value = jumlah;
+	get_total_price();
+	// $("#table_treatment").load('treatment.php?page=form_add_treatment&planting_process_id='+id); 
+}
+
 function edit_menu(id)
 {
 	
@@ -148,7 +166,7 @@ function load_data_history(id)
             
             
             
-            <div class="col-xs-6">
+            <div class="col-md-6">
             <div class="form-group">
              <label>Tanggal </label>
              <div class="input-group">
@@ -161,7 +179,7 @@ function load_data_history(id)
             </div>
             </div>
             
-             <div class="col-xs-6">
+             <div class="col-md-6">
              <div class="form-group">
                                         <label>Meja </label>
                                         <select name="i_table_id" id="i_table_id"  class="selectpicker show-tick form-control" data-live-search="true" onChange="load_data_history(this.value)" >
@@ -208,39 +226,65 @@ function load_data_history(id)
                
                <!-- batas kategori -->
               
-                <div class="col-xs-12">
-                <div class="otheader_title"><?= $row_cat['menu_type_name']?></div>
+                <div class="col-md-12">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="row">
+                            <div class="otheader_title"><?= $row_cat['menu_type_name']?></div>
+                        </div>
+                    </div>
                 </div>
                 
                 
 				<p>
                  
-                 <?php
-                                           $no = 1;
-										   $query = mysql_query("select * from menus where menu_type_id = '".$row_cat['menu_type_id']."' order by menu_id");
-                                            while($row = mysql_fetch_array($query)){
-                                            ?>
-                                         
-                     <div class="col-xs-2" style="margin-bottom:15px;">
-                     
-					<button type="button" class="btn_click btn-new btn-2new" onClick="add_menu(<?= $row['menu_id']?>)"><div class="title_menu" id="title_menu_<?= $row['menu_id']?>"><?= $row['menu_name'] ?></div>
+                  <!-- start menu -->
+                  
+                   <?php
+                    $no2 = 1;
+					$query = mysql_query("select * from menus where menu_type_id = '".$row_cat['menu_type_id']."' order by menu_id");
+                    while($row = mysql_fetch_array($query)){
+                   ?>
+                   
+                  <div class="box-showcase">
+                  	<a onClick="add_menu(<?= $row['menu_id']?>)">
+                        <div class="box-showcaseInner">
+                        <?php
+                        $gambar = ($row['menu_img']) ? $row['menu_img'] : "default.jpg";
+						?>
+                            <img src="../img/menu/<?= $gambar ?>" class="img_class" />
+                           
+                        </div>
+                        </a>
+                        <div class="box-showcaseDesc">
+                            <a onClick="add_menu(<?= $row['menu_id']?>)"> <div class="box-showcaseDesc_name"><?= $row['menu_name'] ?></div>
+                             <div class="box-showcaseDesc_price">Rp. <?= $row['menu_price'] ?></div>
+                             </a>
+                            <div class="box-showcaseDesc_by">
+                            	<div class="col-xs-8" style="padding:0px;">
+                                   	<input required type="text" name="i_jumlah_<?= $row['menu_id'] ?>" id="i_jumlah_<?= $row['menu_id'] ?>" class="form-control text_menu" value="0" onchange="edit_menu(<?= $row['menu_id'] ?>)"/>
+                           			<input type="hidden" name="i_harga_<?= $row['menu_id'] ?>" id="i_harga_<?= $row['menu_id'] ?>" class="form-control text_menu" value="<?= $row['menu_price'] ?>"/>
+                       			</div>
+                                <div class="col-xs-4" style="padding:0px;">
+                                	<a onClick="minus_menu(<?= $row['menu_id']?>)">
+                                	<div class="box-showcaseDesc_button">
+                                    	<i class="fa fa-minus"></i>
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                     	
+                    </div>
+                    
                     <?php
-                    $gambar = ($row['menu_img']) ? $row['menu_img'] : "default.jpg";
-					?>
-                    <div class="img_menu"><img src="../img/menu/<?= $gambar ?>" id="i_click_<?= $row['menu_id'] ?>" /></div>
-					<div class="price_menu">
-					<span>Rp. </span><?= number_format($row['menu_price'], 0) ?>
-                   </div>
-                    </button>
-                  	  <input required type="text" name="i_jumlah_<?= $row['menu_id'] ?>" id="i_jumlah_<?= $row['menu_id'] ?>" class="form-control text_menu" value="0" onchange="edit_menu(<?= $row['menu_id'] ?>)"/>
-                       <input type="hidden" name="i_harga_<?= $row['menu_id'] ?>" id="i_harga_<?= $row['menu_id'] ?>" class="form-control text_menu" value="<?= $row['menu_price'] ?>"/>
-                      
-                      </div>
-                    <?php
-											$no++;
-                                            }
-                                            ?>
-                                            
+					$no2++;
+                    }
+                    ?>
+                                  
+                    <div style="clear:both;"></div>              
+                  <!-- end menu -->
+                            
 				</p>
                 
                   <!-- batas kategori -->
@@ -267,13 +311,13 @@ function load_data_history(id)
                  
                    <div class="col-md-6">
                    
-                 <div class="col-xs-8">
+                 <div class="col-md-8">
                    <div class="form-group">
                   <input required type="hidden" readonly="readonly" name="i_total_harga" id="i_total_harga" class="form-control total_checkout" value="0"/>
                    <input required type="text" readonly="readonly" name="i_total_harga_rupiah" id="i_total_harga_rupiah" class="form-control total_checkout" value="0"/>
                    </div>
                 </div>
-                 <div class="col-xs-4">
+                 <div class="col-md-4">
                    <div class="form-group">
                   <input class="btn btn-warning button_checkout" type="submit" value="SAVE"/>
                 </div>

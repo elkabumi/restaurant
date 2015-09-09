@@ -91,10 +91,10 @@
                             <div class="small-box bg-yellow">
                                 <div class="inner">
                                     <h3>
-                                        <?php echo "-"; //"<span style='font-size:20px'>Rp. </span>".$total_omset ?>
+                                        <?php echo "<span style='font-size:20px'>Rp. </span>".$total_omset ?>
                                     </h3>
                                     <p>
-                                       -<!-- Total Omset -->
+                                        Total Omset 
                                     </p>
                                 </div>
                                 <div class="icon">
